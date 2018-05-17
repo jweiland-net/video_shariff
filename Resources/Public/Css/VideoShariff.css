@@ -1,3 +1,7 @@
+.video-shariff-play {
+  position: absolute;
+}
+
 .video-shariff-preview-icon {
   position: absolute;
   left: 50%;
@@ -5,9 +9,11 @@
   background-color: #eee; /* ie fallback */
   background: rgba(238, 238, 238, 0.8);
   border-radius: 0.375rem;
-  width: 4rem;
-  height: 2.9rem;
+  width: 0;
+  height: 0;
+  border-top: 24px solid transparent;
+  border-left: 36px solid #000;
+  border-bottom: 24px solid transparent;
   margin: -1.45rem -2rem;
-  color: #d68605;
   text-align: center;
 }

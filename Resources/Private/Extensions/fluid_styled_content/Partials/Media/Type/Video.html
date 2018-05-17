@@ -4,7 +4,7 @@
 	<div class="video-embed">
 		<a href="#play" class="video-shariff-play" data-video="{f:render(partial: 'Media/Rendering/Video', arguments: '{file: file, dimensions: dimensions, settings: settings}') -> jw:video()}">
 			<f:image src="{jw:videoPreviewImage(fileReference: '{file}')}" width="{dimensions.width}" height="{dimensions.height}"/>
-			<span class="video-shariff-preview-icon fa fa-2x fa-video-camera"></span>
+			<span class="video-shariff-preview-icon"></span>
 		</a>
 	</div>
 	<f:if condition="{file.description}">
