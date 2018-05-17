@@ -1,0 +1,8 @@
+lib.contentElement {
+  partialRootPaths {
+    1526542481 = EXT:video_shariff/Resources/Private/Extensions/fluid_styled_content/Partials/
+  }
+}
+
+page.includeCSS.video_shariff = EXT:video_shariff/Resources/Public/Css/VideoShariff.css
+page.includeJSFooterlibs.video_shariff = EXT:video_shariff/Resources/Public/JavaScript/VideoShariff.min.js

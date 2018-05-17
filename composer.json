@@ -1,0 +1,28 @@
+{
+	"name": "jweiland/video-shariff",
+	"type": "typo3-cms-extension",
+	"description": "",
+	"license": "GPL-2.0-or-later",
+	"keywords": ["typo3", "TYPO3 CMS", "video", "shariff", "gdpr", "dsgvo"],
+	"homepage": "http://www.jweiland.net",
+	"authors": [
+		{
+			"name": "Pascal Rinker",
+			"email": "projects@jweiland.net",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"email": "projects@jweiland.net",
+		"issues": "https://github.com/jweiland-net/video_shariff/issues",
+		"source": "https://github.com/jweiland-net/video_shariff"
+	},
+	"require": {
+		"typo3/cms-core": ">=8.7.0,<9.4.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"JWeiland\\VideoShariff\\": "Classes"
+		}
+	}
+}

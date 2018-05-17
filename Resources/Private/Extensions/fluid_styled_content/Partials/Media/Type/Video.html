@@ -1,0 +1,16 @@
+{namespace jw=JWeiland\VideoShariff\ViewHelpers}
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<figure class="video">
+	<div class="video-embed">
+		<a href="#play" class="video-shariff-play" data-video="{f:render(partial: 'Media/Rendering/Video', arguments: '{file: file, dimensions: dimensions, settings: settings}') -> jw:video()}">
+			<f:image src="{jw:videoPreviewImage(fileReference: '{file}')}" width="{dimensions.width}" height="{dimensions.height}"/>
+			<span class="video-shariff-preview-icon fa fa-2x fa-video-camera"></span>
+		</a>
+	</div>
+	<f:if condition="{file.description}">
+		<figcaption class="video-caption">
+			{file.description}
+		</figcaption>
+	</f:if>
+</figure>
+</html>
