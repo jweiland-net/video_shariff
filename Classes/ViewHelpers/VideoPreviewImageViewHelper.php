@@ -25,6 +25,11 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class VideoPreviewImageViewHelper extends AbstractViewHelper
 {
+    /**
+     * Initialize arguments
+     *
+     * @return void
+     */
     public function initializeArguments()
     {
         $this->registerArgument(
@@ -34,6 +39,14 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
         );
     }
 
+    /**
+     * Returns the absolute web path to the preview image.
+     *
+     * @param array $arguments
+     * @param \Closure $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
+     * @return string
+     */
     public static function renderStatic(
         array $arguments,
         \Closure $renderChildrenClosure,

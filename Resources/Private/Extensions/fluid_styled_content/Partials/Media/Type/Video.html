@@ -4,7 +4,11 @@
 	<div class="video-embed">
 		<a href="#play" class="video-shariff-play" data-video="{f:render(partial: 'Media/Rendering/Video', arguments: '{file: file, dimensions: dimensions, settings: settings}') -> jw:video()}">
 			<f:image src="{jw:videoPreviewImage(fileReference: '{file}')}" width="{dimensions.width}" height="{dimensions.height}"/>
-			<span class="video-shariff-preview-icon"></span>
+			<span class="video-shariff-preview-overlay"></span>
+			<div class="video-shariff-preview">
+				<span class="video-shariff-preview-icon"></span>
+				<span class="video-shariff-preview-text"><f:translate key="preview.text" extensionName="videoShariff" /></span>
+			</div>
 		</a>
 	</div>
 	<f:if condition="{file.description}">

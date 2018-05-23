@@ -4,5 +4,5 @@ lib.contentElement {
   }
 }
 
-page.includeCSS.video_shariff = EXT:video_shariff/Resources/Public/Css/VideoShariff.css
+page.includeCSS.video_shariff = EXT:video_shariff/Resources/Public/Css/VideoShariff.min.css
 page.includeJSFooterlibs.video_shariff = EXT:video_shariff/Resources/Public/JavaScript/VideoShariff.min.js
