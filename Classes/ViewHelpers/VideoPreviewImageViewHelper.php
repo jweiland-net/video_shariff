@@ -51,15 +51,20 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ) {
+    ): string
+    {
         /** @var FileReference $fileReference */
         $fileReference = $arguments['fileReference'];
         $file = $fileReference->getOriginalFile();
         $helper = OnlineMediaHelperRegistry::getInstance()->getOnlineMediaHelper($file);
-        $privateFile = $helper->getPreviewImage($file);
-        $publicFile = '/typo3temp/assets/images/' . substr($privateFile, strrpos($privateFile, '/') + 1);
-        if (!is_file($publicFile)) {
-            copy($privateFile, PATH_site . $publicFile);
+        if ($helper) {
+            $privateFile = $helper->getPreviewImage($file);
+            $publicFile = '/typo3temp/assets/images/' . substr($privateFile, strrpos($privateFile, '/') + 1);
+            if (!is_file($publicFile)) {
+                copy($privateFile, PATH_site . $publicFile);
+            }
+        } else {
+            $publicFile = '';
         }
         return $publicFile;
     }

@@ -1,20 +1,30 @@
 {namespace jw=JWeiland\VideoShariff\ViewHelpers}
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<figure class="video">
-	<div class="video-embed">
-		<a href="#play" class="video-shariff-play" data-video="{f:render(partial: 'Media/Rendering/Video', arguments: '{file: file, dimensions: dimensions, settings: settings}') -> jw:video()}">
-			<f:image src="{jw:videoPreviewImage(fileReference: '{file}')}" width="{dimensions.width}" height="{dimensions.height}"/>
-			<span class="video-shariff-preview-overlay"></span>
-			<div class="video-shariff-preview">
-				<span class="video-shariff-preview-icon"></span>
-				<span class="video-shariff-preview-text"><f:translate key="preview.text" extensionName="videoShariff" /></span>
+<f:variable name="previewImage" value="{jw:videoPreviewImage(fileReference: '{file}')}" />
+<f:variable name="playerHtml" value="{f:render(partial: 'Media/Rendering/Video', arguments: '{file: file, dimensions: dimensions, settings: settings}')}" />
+<f:if condition="{previewImage}">
+	<f:then>
+		<figure class="video">
+			<div class="video-embed">
+				<a href="#play" class="video-shariff-play" data-video="{playerHtml -> jw:video()}">
+					<f:image src="{previewImage}" width="{dimensions.width}" height="{dimensions.height}"/>
+					<span class="video-shariff-preview-overlay"></span>
+					<div class="video-shariff-preview">
+						<span class="video-shariff-preview-icon"></span>
+						<span class="video-shariff-preview-text"><f:translate key="preview.text" extensionName="videoShariff" /></span>
+					</div>
+				</a>
 			</div>
-		</a>
-	</div>
-	<f:if condition="{file.description}">
-		<figcaption class="video-caption">
-			{file.description}
-		</figcaption>
-	</f:if>
-</figure>
+			<f:if condition="{file.description}">
+				<figcaption class="video-caption">
+					{file.description}
+				</figcaption>
+			</f:if>
+		</figure>
+	</f:then>
+	<f:else>
+		<f:comment>Render player directly if no helper is available (for local videos)</f:comment>
+		<f:format.raw>{playerHtml}</f:format.raw>
+	</f:else>
+</f:if>
 </html>
