@@ -17,6 +17,7 @@ namespace JWeiland\VideoShariff\ViewHelpers;
 
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
@@ -53,15 +54,21 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
         RenderingContextInterface $renderingContext
     ): string
     {
+        $publicDirectory = PATH_site . '/typo3temp/assets/tx_videoshariff/';
         /** @var FileReference $fileReference */
         $fileReference = $arguments['fileReference'];
         $file = $fileReference->getOriginalFile();
         $helper = OnlineMediaHelperRegistry::getInstance()->getOnlineMediaHelper($file);
         if ($helper) {
             $privateFile = $helper->getPreviewImage($file);
-            $publicFile = '/typo3temp/assets/images/' . substr($privateFile, strrpos($privateFile, '/') + 1);
+            $publicFile = $publicDirectory . substr($privateFile, strrpos($privateFile, '/') + 1);
+            // check if file has already been copied
             if (!is_file($publicFile)) {
-                copy($privateFile, PATH_site . $publicFile);
+                // check if public directory exists
+                if (!is_dir($publicDirectory)) {
+                    GeneralUtility::mkdir_deep($publicDirectory);
+                }
+                copy($privateFile, $publicFile);
             }
         } else {
             $publicFile = '';
