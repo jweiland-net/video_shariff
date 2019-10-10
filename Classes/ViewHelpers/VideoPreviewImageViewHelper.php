@@ -15,6 +15,7 @@ namespace JWeiland\VideoShariff\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -54,7 +55,8 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
         RenderingContextInterface $renderingContext
     ): string
     {
-        $publicDirectory = PATH_site . '/typo3temp/assets/tx_videoshariff/';
+        $pathSite = version_compare(TYPO3_version, '9.0.0', '<') ? PATH_site : Environment::getPublicPath();
+        $publicDirectory = $pathSite . '/typo3temp/assets/tx_videoshariff/';
         /** @var FileReference $fileReference */
         $fileReference = $arguments['fileReference'];
         $file = $fileReference->getOriginalFile();
@@ -75,5 +77,4 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
         }
         return $publicFile;
     }
-
 }

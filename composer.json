@@ -18,7 +18,7 @@
 		"source": "https://github.com/jweiland-net/video_shariff"
 	},
 	"require": {
-		"typo3/cms-core": ">=8.7.0,<9.6.0"
+		"typo3/cms-core": "^8.7 || ^9.5 || >=10.0 <=10.1"
 	},
 	"autoload": {
 		"psr-4": {

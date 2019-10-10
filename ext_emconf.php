@@ -7,10 +7,10 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'Pascal Rinker',
     'author_email' => 'projects@jweiland.net',
     'author_company' => 'jweiland.net',
-    'version' => '1.2.1',
+    'version' => '1.3.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '8.7.0-9.5.99',
+            'typo3' => '8.7.0-10.1',
             'fluid_styled_content' => '8.7.0-0.0.0'
         ],
         'conflicts' => [],
