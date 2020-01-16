@@ -5,7 +5,7 @@
 		<body>
 			<trans-unit id="preview.text">
 				<source>We take care about your privacy. Only when you click here, data from third party servers will be loaded.</source>
-				<target>Der Schutz Ihrer Daten ist uns wichtig. Erst wenn Sie hier klicken, erlauben Sie uns Daten von Dritt-Anbieter-Servern zu laden.</target>
+				<target>Der Schutz Ihrer Daten ist uns wichtig. Erst wenn Sie hier klicken, erlauben Sie uns, Daten von Dritt-Anbieter-Servern zu laden.</target>
 			</trans-unit>
 		</body>
 	</file>
