@@ -6,7 +6,7 @@
 	<div class="video-embed">
 		<f:if condition="{previewImage}">
 			<f:then>
-				<a href="#play" class="video-shariff-play" data-video="{playerHtml -> jw:video()}">
+				<a href="#play" class="video-shariff-play" data-video="{playerHtml -> f:format.json()}">
 					<f:image src="{previewImage}" width="{dimensions.width}" height="{dimensions.height}"/>
 					<span class="video-shariff-preview-overlay"></span>
 					<div class="video-shariff-preview">
