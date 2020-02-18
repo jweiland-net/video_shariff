@@ -75,6 +75,11 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
         } else {
             $publicFile = '';
         }
+        
+        $tempId = StringUtility::getUniqueId();
+        $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+        $pageRenderer->addInlineSetting('video_shariff.video', $tempId, $renderChildrenClosure());
+        
         return $publicFile;
     }
 }
