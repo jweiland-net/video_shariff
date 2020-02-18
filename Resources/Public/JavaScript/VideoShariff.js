@@ -3,7 +3,14 @@ function replaceVideo(event) {
     while (previewLink.className !== 'video-shariff-play') {
         previewLink = previewLink.parentElement;
     }
-    if (TYPO3.settings['video_shariff'] && TYPO3.settings['video_shariff']['video'][previewLink.dataset.video]) {
+    useDeprecatedWay = false;
+    try {
+        if (TYPO3.settings['video_shariff']['video'][previewLink.dataset.video]) {
+            useDeprecatedWay = true
+        }
+    } catch (exception) {
+    }
+    if (useDeprecatedWay) {
         // Support deprecated templates with VideoViewHelper call until v2.0.0
         previewLink.outerHTML = TYPO3.settings['video_shariff']['video'][previewLink.dataset.video];
     } else {
