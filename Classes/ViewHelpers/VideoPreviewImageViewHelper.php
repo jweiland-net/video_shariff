@@ -19,6 +19,8 @@ use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\PathUtility;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
@@ -70,11 +72,32 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
                 if (!is_dir($publicDirectory)) {
                     GeneralUtility::mkdir_deep($publicDirectory);
                 }
-                copy($privateFile, $publicFile);
+                if (is_file($privateFile)) {
+                    copy($privateFile, $publicFile);
+                } else {
+                    // sometimes OnlineMediaHelperInterface::getPreviewImage() returns a file that does not exist!
+                    $publicFile = static::getDefaultThumbnailFile();
+                }
             }
         } else {
             $publicFile = '';
         }
         return $publicFile;
+    }
+
+    protected static function getTypoScriptFrontendController(): TypoScriptFrontendController
+    {
+        return $GLOBALS['TSFE'];
+    }
+
+    protected static function getDefaultThumbnailFile(): string
+    {
+        $filename = static::getTypoScriptFrontendController()->tmpl->setup['lib.']['video_shariff.']['defaultThumbnail'];
+        if (strpos($filename, 'EXT:') === 0) {
+            $file = GeneralUtility::getFileAbsFileName($filename);
+        } else {
+            $file = PathUtility::getAbsoluteWebPath($filename);
+        }
+        return $file;
     }
 }

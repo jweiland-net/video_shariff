@@ -1,0 +1,4 @@
+lib.video_shariff {
+  # cat=basic/file/1; type=string; label=Default thumbnail when no video specific thumbnail can be fetched
+  defaultThumbnail = EXT:video_shariff/Resources/Public/Images/DefaultThumbnail.jpg
+}
