@@ -1,0 +1,4 @@
+# This file was replaced by setup.typoscript.  It will be removed with video_shariff 2.0.0
+
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:video_shariff/Configuration/TypoScript/setup.typoscript">
+lib.video_shariff.defaultThumbnail = EXT:video_shariff/Resources/Public/Images/DefaultThumbnail.png
