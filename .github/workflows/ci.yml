@@ -1,31 +1,36 @@
 # Adapted from https://github.com/TYPO3GmbH/blog/blob/master/.github/workflows/ci.yml
 name: CI
 
-on: [pull_request]
+on: [ pull_request ]
 
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        typo3: [^9.5, ^10.4]
-        php: ['7.2', '7.3', '7.4']
-        os: [ubuntu-latest]
+        typo3: [ ^9.5, ^10.4 ]
+        php: [ '7.2', '7.3', '7.4' ]
+        os: [ ubuntu-latest ]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up PHP Version ${{ matrix.php }}
+      - name: Set up PHP version ${{ matrix.php }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+
+      - name: Environment Check
         run: |
-          sudo update-alternatives --set php /usr/bin/php${{ matrix.php }}
-          php -v
+          php --version
+          composer --version
       - name: Validate composer.json and composer.lock
         run: composer validate
 
-      - name: Install dependencies with typo3/cms-core:${{ matrix.typo3 }}
+      - name: Install dependencies with ${{ matrix.package }}:${{ matrix.typo3 }}
         run: |
-          composer require typo3/cms-core:${{ matrix.typo3 }} --no-progress
+          composer require ${{ matrix.package }}:${{ matrix.typo3 }} --no-progress
           git checkout composer.json
 
       - name: php-cs-fixer
