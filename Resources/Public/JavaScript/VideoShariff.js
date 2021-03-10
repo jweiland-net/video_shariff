@@ -1,11 +1,13 @@
 function replaceVideo(event) {
+    var TYPO3 = TYPO3 || {};
+    var useDeprecatedWay = false;
     var previewLink = event.target;
+
     while (previewLink.className !== 'video-shariff-play') {
         previewLink = previewLink.parentElement;
     }
-    useDeprecatedWay = false;
     try {
-        if (TYPO3.settings['video_shariff']['video'][previewLink.dataset.video]) {
+        if (TYPO3.hasOwnProperty('settings') && TYPO3.settings['video_shariff']['video'][previewLink.dataset.video]) {
             useDeprecatedWay = true
         }
     } catch (exception) {
