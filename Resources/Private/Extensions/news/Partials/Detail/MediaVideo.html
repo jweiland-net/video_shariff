@@ -1,0 +1,31 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:jw="http://typo3.org/ns/JWeiland/VideoShariff/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:variable name="previewImage" value="{jw:videoPreviewImage(fileReference: '{mediaElement}')}" />
+<f:variable name="playerHtml" value="{f:media(file: '{mediaElement}', width: '{settings.detail.media.video.width}', height: '{settings.detail.media.video.height}')}" />
+<div class="mediaelement">
+	<div class="mediaelement-video">
+		<f:if condition="{previewImage}">
+			<f:then>
+				<a href="#play" class="video-shariff-play" data-video="{playerHtml -> f:format.json()}">
+					<f:image src="{previewImage}" width="{settings.detail.media.video.width}" height="{settings.detail.media.video.height}"/>
+					<span class="video-shariff-preview-overlay"></span>
+					<div class="video-shariff-preview">
+						<span class="video-shariff-preview-icon"></span>
+						<span class="video-shariff-preview-text"><f:translate key="preview.text" extensionName="videoShariff" /></span>
+					</div>
+				</a>
+			</f:then>
+			<f:else>
+				{playerHtml -> f:format.raw()}
+			</f:else>
+		</f:if>
+	</div>
+
+	<f:if condition="{mediaElement.description}">
+		<div class="medialement-alternative-content">
+			<p class="news-img-caption">
+				{mediaElement.description}
+			</p>
+		</div>
+	</f:if>
+</div>
+</html>

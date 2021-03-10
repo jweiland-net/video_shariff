@@ -4,6 +4,12 @@ lib.contentElement {
   }
 }
 
+plugin.tx_news.view {
+  partialRootPaths {
+    1526542481 = EXT:video_shariff/Resources/Private/Extensions/news/Partials/
+  }
+}
+
 lib.video_shariff {
   defaultThumbnail = {$lib.video_shariff.defaultThumbnail}
 }
