@@ -18,7 +18,7 @@
 		"source": "https://github.com/jweiland-net/video_shariff"
 	},
 	"require": {
-		"typo3/cms-core": "^8.7 || ^9.5.17 || ^10.4.2"
+		"typo3/cms-core": "^10.4 || ^11.4"
 	},
 	"require-dev": {
 		"friendsofphp/php-cs-fixer": "^2.0"

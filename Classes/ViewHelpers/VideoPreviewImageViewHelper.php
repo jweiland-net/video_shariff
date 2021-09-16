@@ -31,7 +31,7 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
     /**
      * Initialize arguments
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument(
             'fileReference',
@@ -54,8 +54,7 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
     ): string {
-        $pathSite = version_compare(TYPO3_version, '9.0.0', '<') ? PATH_site : Environment::getPublicPath();
-        $publicDirectory = $pathSite . '/typo3temp/assets/tx_videoshariff/';
+        $publicDirectory = Environment::getPublicPath() . '/typo3temp/assets/tx_videoshariff/';
         /** @var FileReference|ExtbaseFileReference $fileReference */
         $fileReference = $arguments['fileReference'];
 
