@@ -19,7 +19,7 @@ The recommended way to install the extension is using Composer.
 Run the following command within your Composer based TYPO3 project:
 
 ```
-composer require jweiland/video_shariff
+composer require jweiland/video-shariff
 ```
 
 #### Installation as extension from TYPO3 Extension Repository (TER)
