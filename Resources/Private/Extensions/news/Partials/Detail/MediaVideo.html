@@ -6,7 +6,7 @@
 		<f:if condition="{previewImage}">
 			<f:then>
 				<a href="#play" class="video-shariff-play" data-video="{playerHtml -> f:format.json()}">
-					<f:image src="{previewImage}" width="{settings.detail.media.video.width}" height="{settings.detail.media.video.height}"/>
+					<f:image src="{previewImage}" alt="{mediaElement.title}" width="{settings.detail.media.video.width}" height="{settings.detail.media.video.height}"/>
 					<span class="video-shariff-preview-overlay"></span>
 					<div class="video-shariff-preview">
 						<span class="video-shariff-preview-icon"></span>
