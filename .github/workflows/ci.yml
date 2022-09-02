@@ -9,8 +9,8 @@ jobs:
     strategy:
       matrix:
         package: [typo3/cms-core]
-        typo3: [ ^9.5, ^10.4 ]
-        php: [ '7.2', '7.3', '7.4' ]
+        typo3: [ ^10.4, ^11.5 ]
+        php: [ '7.3', '7.4', '8.0' ]
         os: [ ubuntu-latest ]
 
     steps:
