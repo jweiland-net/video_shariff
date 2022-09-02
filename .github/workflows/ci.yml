@@ -5,13 +5,13 @@ on: [ pull_request ]
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
+
     strategy:
+      fail-fast: false
       matrix:
-        package: [typo3/cms-core]
         typo3: [ ^10.4, ^11.5 ]
         php: [ '7.3', '7.4' ]
-        os: [ ubuntu-latest ]
         exclude:
           - typo3: ^11.4
             php: '7.3'
@@ -32,12 +32,13 @@ jobs:
         run: |
           php --version
           composer --version
+
       - name: Validate composer.json and composer.lock
         run: composer validate
 
-      - name: Install dependencies with ${{ matrix.package }}:${{ matrix.typo3 }}
+      - name: Install dependencies with typo3/cms-core:${{ matrix.typo3 }}
         run: |
-          composer require ${{ matrix.package }}:${{ matrix.typo3 }} --no-progress
+          composer require typo3/cms-core:${{ matrix.typo3 }} --no-progress
           git checkout composer.json
 
       - name: php-cs-fixer
