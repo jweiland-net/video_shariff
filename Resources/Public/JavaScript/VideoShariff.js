@@ -1,5 +1,4 @@
 (function () {
-
     function replaceVideo(event) {
         let previewLink = event.target;
 
@@ -13,5 +12,4 @@
     for (i; i < videos.length; i++) {
         videos[i].onclick = function(event){event.preventDefault(); replaceVideo(event);};
     }
-
 })();
