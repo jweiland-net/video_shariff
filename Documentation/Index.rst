@@ -1,57 +1,52 @@
-﻿.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
+﻿.. include:: /Includes.rst.txt
 
-.. include:: Includes.txt
+=============
+Video Shariff
+=============
 
-.. _start:
+:Extension key:
+   video_shariff
 
-=============================================================
-video_shariff
-=============================================================
+:Package name:
+   Video Shariff
 
-.. only:: html
+:Version:
+   |release|
 
-	:Classification:
-		video_shariff
+:Language:
+   en
 
-	:Version:
-		|release|
+:Author:
+   Stefan Froemken
 
-	:Language:
-		en
+:License:
+   This document is published under the
+   `Creative Commons BY 4.0 <https://creativecommons.org/licenses/by/4.0/>`__
+   license.
 
-	:Description:
-		This extension provides more privacy when embedding videos in frontend.
+:Rendered:
+   |today|
 
-	:Keywords:
-		video,embedd,shariff,privacy,protection,dsgvo,gdpr
+----
 
-	:Copyright:
-		2018
+This extension provides more privacy when embedding videos in frontend.
 
-	:Author:
-		jweiland.net
+----
 
-	:Email:
-		support@jweiland.net
-
-	:License:
-		This document is published under the Open Content License
-		available from http://www.opencontent.org/opl.shtml
-
-	:Rendered:
-		|today|
-
-	The content of this document is related to TYPO3,
-	a GNU/GPL CMS/Framework available from `www.typo3.org <http://www.typo3.org/>`_.
-
-	**Table of Contents**
+**Table of Contents:**
 
 .. toctree::
-	:maxdepth: 3
+   :maxdepth: 2
+   :titlesonly:
 
-	Introduction/Index
-	Administrator/Index
-	Links
+   Introduction/Index
+   Administrator/Index
+   Links
+
+.. Meta Menu
+
+.. toctree::
+   :hidden:
+
+   Sitemap
+   genindex
