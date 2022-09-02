@@ -2,7 +2,7 @@
     function replaceVideo(event) {
         let previewLink = event.target;
 
-        while (previewLink.className !== 'video-shariff-play') {
+        while (!previewLink.className.split(' ').includes('video-shariff-play')) {
             previewLink = previewLink.parentElement;
         }
         previewLink.outerHTML = JSON.parse(previewLink.dataset.video);
