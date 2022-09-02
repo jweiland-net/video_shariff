@@ -13,7 +13,7 @@ jobs:
         typo3: [ ^10.4, ^11.5 ]
         php: [ '7.3', '7.4' ]
         exclude:
-          - typo3: ^11.4
+          - typo3: ^11.5
             php: '7.3'
         include:
           - typo3: ^11.5
