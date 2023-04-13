@@ -11,10 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         typo3: [ ^11.5, ^12.3 ]
-        php: [ '8.1', '8.2' ]
-        exclude:
-          - typo3: ^11.5
-            php: '8.2'
+        php: [ '8.1' ]
         include:
           - typo3: ^11.5
             php: '7.4'
