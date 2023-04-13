@@ -28,9 +28,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class VideoPreviewImageViewHelper extends AbstractViewHelper
 {
-    /**
-     * Initialize arguments
-     */
     public function initializeArguments(): void
     {
         $this->registerArgument(
@@ -43,10 +40,6 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
     /**
      * Returns the absolute web path to the preview image.
      *
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
-     * @return string
      * @throws \UnexpectedValueException
      */
     public static function renderStatic(
@@ -63,11 +56,13 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
             // We have a domain model, so we need to fetch the FAL resource object from there
             $fileReference = $fileReference->getOriginalResource();
         }
+
         if (!($fileReference instanceof FileInterface || $fileReference instanceof AbstractFileFolder)) {
             throw new \UnexpectedValueException('Supplied file object type ' . get_class($fileReference) . ' must be FileInterface or AbstractFileFolder.', 1454252193);
         }
+
         $file = $fileReference->getOriginalFile();
-        $helper = OnlineMediaHelperRegistry::getInstance()->getOnlineMediaHelper($file);
+        $helper = self::getOnlineMediaHelperRegistry()->getOnlineMediaHelper($file);
         if ($helper) {
             $privateFile = $helper->getPreviewImage($file);
             $publicFile = $publicDirectory . substr($privateFile, strrpos($privateFile, '/') + 1);
@@ -95,10 +90,15 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
         return $GLOBALS['TSFE'];
     }
 
+    protected static function getOnlineMediaHelperRegistry(): OnlineMediaHelperRegistry
+    {
+        return GeneralUtility::makeInstance(OnlineMediaHelperRegistry::class);
+    }
+
     protected static function getDefaultThumbnailFile(): string
     {
         $filename = static::getTypoScriptFrontendController()->tmpl->setup['lib.']['video_shariff.']['defaultThumbnail'];
-        if (strpos($filename, 'EXT:') === 0) {
+        if (str_starts_with($filename, 'EXT:')) {
             $file = GeneralUtility::getFileAbsFileName($filename);
         } else {
             $file = PathUtility::getAbsoluteWebPath($filename);
