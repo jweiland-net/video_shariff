@@ -40,7 +40,8 @@ This extension provides more privacy when embedding videos in frontend.
     :titlesonly:
 
     Introduction/Index
-    Administrator/Index
+    Installation/Index
+    Configuration/Index
     Links
 
 ..  Meta Menu
