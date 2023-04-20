@@ -4,7 +4,7 @@
 	"description": "This extension provides more privacy when embedding videos in frontend.",
 	"license": "GPL-2.0-or-later",
 	"keywords": ["typo3", "TYPO3 CMS", "video", "shariff", "gdpr", "dsgvo"],
-	"homepage": "http://www.jweiland.net",
+	"homepage": "https://jweiland.net",
 	"authors": [
 		{
 			"name": "Stefan Froemken",
