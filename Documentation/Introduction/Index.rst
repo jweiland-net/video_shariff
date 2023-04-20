@@ -1,14 +1,14 @@
-﻿.. include:: /Includes.rst.txt
+﻿..  include:: /Includes.rst.txt
 
 
-.. _introduction:
+..  _introduction:
 
 ============
 Introduction
 ============
 
 
-.. _what-it-does:
+..  _what-it-does:
 
 What does it do?
 ================
@@ -20,14 +20,14 @@ more privacy for your website users.
 Screenshots
 ===========
 
-.. figure:: ../Images/PreviewImage.png
-   :width: 300px
-   :alt: Preview image
+..  figure:: ../Images/PreviewImage.png
+    :width: 300px
+    :alt: Preview image
 
-   Preview image
+    Preview image
 
-.. figure:: ../Images/VimeoPlayer.png
-   :width: 300px
-   :alt: Example player after user clicked on the preview image
+..  figure:: ../Images/VimeoPlayer.png
+    :width: 300px
+    :alt: Example player after user clicked on the preview image
 
-   Example player after user clicked on the preview image
+    Example player after user clicked on the preview image
