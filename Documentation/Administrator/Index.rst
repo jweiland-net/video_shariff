@@ -17,7 +17,8 @@ template "video_shariff" to your template and then clearing the cache.
 Override preview image text / add additional languages
 ======================================================
 
-You can override the default preview image text and adding new languages via TypoScript setup.
+You can override the default preview image text and adding new languages via
+TypoScript setup.
 
 ..  code-block:: typoscript
 
@@ -27,8 +28,9 @@ You can override the default preview image text and adding new languages via Typ
 Use a custom default thumbnail
 ==============================
 
-The default thumbnail is rendered when no video specific thumbnail can be fetched. You can use your own
-thumbnail using the constant editor or TypoScript.
+The default thumbnail is rendered when no video specific thumbnail can be
+fetched. You can use your own thumbnail using the constant editor or
+TypoScript.
 
 Using constant editor
 ---------------------
