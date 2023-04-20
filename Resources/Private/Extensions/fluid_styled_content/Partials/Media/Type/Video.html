@@ -1,30 +1,37 @@
-{namespace jw=JWeiland\VideoShariff\ViewHelpers}
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<f:variable name="previewImage" value="{jw:videoPreviewImage(fileReference: '{file}')}" />
-<f:variable name="playerHtml" value="{f:render(partial: 'Media/Rendering/Video', arguments: '{file: file, dimensions: dimensions, settings: settings}')}" />
+<html lang="en"
+      xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:jw="http://typo3.org/ns/JWeiland/VideoShariff/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:variable name="previewImage" value="{jw:videoPreviewImage(fileReference: '{file}')}"/>
+<f:variable name="playerHtml"><f:render partial="Media/Rendering/Video" arguments="{file: file, dimensions: dimensions, settings: settings}"/></f:variable>
+
 <figure class="video">
-	<div class="video-embed">
-		<f:if condition="{previewImage}">
-			<f:then>
-				<a href="#play" class="video-shariff-play" data-video="{playerHtml -> f:format.json()}">
-					<f:image src="{previewImage}" width="{dimensions.width}" height="{dimensions.height}" alt="{file.title}"/>
-					<span class="video-shariff-preview-overlay"></span>
-					<div class="video-shariff-preview">
-						<span class="video-shariff-preview-icon"></span>
-						<span class="video-shariff-preview-text"><f:translate key="preview.text" extensionName="videoShariff" /></span>
-					</div>
-				</a>
-			</f:then>
-			<f:else>
-				<f:comment>Render player directly if no helper is available (for local videos)</f:comment>
-				<f:format.raw>{playerHtml}</f:format.raw>
-			</f:else>
-		</f:if>
-	</div>
-	<f:if condition="{file.description}">
-		<figcaption class="video-caption">
-			{file.description}
-		</figcaption>
-	</f:if>
+    <div class="video-embed">
+        <f:if condition="{previewImage}">
+            <f:then>
+                <a href="#play" class="video-shariff-play" data-video="{playerHtml -> f:format.json()}">
+                    <f:image src="{previewImage}"
+                             width="{dimensions.width}"
+                             height="{dimensions.height}"
+                             alt="{file.title}"/>
+                    <span class="video-shariff-preview-overlay"></span>
+                    <div class="video-shariff-preview">
+                        <span class="video-shariff-preview-icon"></span>
+                        <span class="video-shariff-preview-text">{f:translate(key: 'preview.text', extensionName: 'videoShariff')}</span>
+                    </div>
+                </a>
+            </f:then>
+            <f:else>
+                <f:comment><!-- Render player directly if no helper is available (for local videos) --></f:comment>
+                <f:format.raw>{playerHtml}</f:format.raw>
+            </f:else>
+        </f:if>
+    </div>
+    <f:if condition="{file.description}">
+        <figcaption class="video-caption">
+            {file.description}
+        </figcaption>
+    </f:if>
 </figure>
 </html>

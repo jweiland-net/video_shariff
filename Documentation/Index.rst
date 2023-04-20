@@ -1,31 +1,31 @@
-﻿.. include:: /Includes.rst.txt
+﻿..  include:: /Includes.rst.txt
 
 =============
 Video Shariff
 =============
 
 :Extension key:
-   video_shariff
+    video_shariff
 
 :Package name:
-   Video Shariff
+    jweiland/video-shariff
 
 :Version:
-   |release|
+    |release|
 
 :Language:
-   en
+    en
 
 :Author:
-   Stefan Froemken
+    Stefan Froemken
 
 :License:
-   This document is published under the
-   `Creative Commons BY 4.0 <https://creativecommons.org/licenses/by/4.0/>`__
-   license.
+    This document is published under the
+    `Creative Commons BY 4.0 <https://creativecommons.org/licenses/by/4.0/>`__
+    license.
 
 :Rendered:
-   |today|
+    |today|
 
 ----
 
@@ -35,18 +35,19 @@ This extension provides more privacy when embedding videos in frontend.
 
 **Table of Contents:**
 
-.. toctree::
-   :maxdepth: 2
-   :titlesonly:
+..  toctree::
+    :maxdepth: 2
+    :titlesonly:
 
-   Introduction/Index
-   Administrator/Index
-   Links
+    Introduction/Index
+    Installation/Index
+    Configuration/Index
+    Links
 
-.. Meta Menu
+..  Meta Menu
 
-.. toctree::
-   :hidden:
+..  toctree::
+    :hidden:
 
-   Sitemap
-   genindex
+    Sitemap
+    genindex

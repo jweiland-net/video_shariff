@@ -1,3 +1,6 @@
+page.includeCSS.video_shariff = EXT:video_shariff/Resources/Public/Css/VideoShariff.min.css
+page.includeJSFooterlibs.video_shariff = EXT:video_shariff/Resources/Public/JavaScript/VideoShariff.min.js
+
 lib.contentElement {
   partialRootPaths {
     1526542481 = EXT:video_shariff/Resources/Private/Extensions/fluid_styled_content/Partials/
@@ -13,6 +16,3 @@ plugin.tx_news.view {
 lib.video_shariff {
   defaultThumbnail = {$lib.video_shariff.defaultThumbnail}
 }
-
-page.includeCSS.video_shariff = EXT:video_shariff/Resources/Public/Css/VideoShariff.min.css
-page.includeJSFooterlibs.video_shariff = EXT:video_shariff/Resources/Public/JavaScript/VideoShariff.min.js
