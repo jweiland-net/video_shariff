@@ -1,73 +1,81 @@
-{namespace jw=JWeiland\VideoShariff\ViewHelpers}
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<f:variable name="previewImage" value="{jw:videoPreviewImage(fileReference: '{file}')}" />
+<html lang="en"
+      xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:jw="http://typo3.org/ns/JWeiland/VideoShariff/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:variable name="previewImage" value="{jw:videoPreviewImage(fileReference: '{file}')}"/>
 <f:variable name="publicUrl" value="{jw:videoPublicUrl(fileReference: '{file}')}" />
 <f:variable name="creationDate" value="{jw:videoCreationDate(fileReference: '{file}')}" />
-<f:variable name="playerHtml" value="{f:render(partial: 'Media/Rendering/Video', arguments: '{file: file, dimensions: dimensions, settings: settings}')}" />
+<f:variable name="playerHtml"><f:render partial="Media/Rendering/Video" arguments="{file: file, dimensions: dimensions, settings: settings}"/></f:variable>
+
 <figure class="video" itemprop="video" itemscope itemtype="https://schema.org/VideoObject">
-	<div class="video-embed">
-		<f:if condition="{previewImage}">
-			<f:then>
-				<a href="#play" class="video-shariff-play" data-video="{playerHtml -> f:format.json()}">
-					<f:image src="{previewImage}" width="{dimensions.width}" height="{dimensions.height}" alt="{file.title}" additionalAttributes="{itemprop:'thumbnailUrl'}"/>
-					<span class="video-shariff-preview-overlay"></span>
-					<div class="video-shariff-preview">
-						<span class="video-shariff-preview-icon"></span>
-						<span class="video-shariff-preview-text"><f:translate key="preview.text" extensionName="videoShariff" /></span>
-					</div>
-				</a>
-			</f:then>
-			<f:else>
-				<f:comment>Render player directly if no helper is available (for local videos)</f:comment>
-				<f:format.raw>{playerHtml}</f:format.raw>
-			</f:else>
-		</f:if>
-	</div>
-	<f:if condition="{file.description}">
-		<f:then>
-		<figcaption class="video-caption" itemprop="description">
-			{file.description}
-		</figcaption>
-		</f:then>
-		<f:else>
-			<f:if condition="{file.properties.caption}">
-				<f:then>
-					<meta itemprop="description" content="{file.properties.caption}" />
-				</f:then>
-				<f:else>
-					<f:if condition="{file.title}">
-						<f:then>
-							<meta itemprop="description" content="{file.title}" />
-						</f:then>
-						<f:else>
-							<meta itemprop="description" content="{file.name}" />
-						</f:else>
-					</f:if>
-				</f:else>
-			</f:if>
-		</f:else>
-	</f:if>
-	<f:if condition="{file.title}">
-		<f:then>
-			<meta itemprop="name" content="{file.title}" />
-		</f:then>
-		<f:else>
-			<meta itemprop="name" content="{file.name}" />
-		</f:else>
-	</f:if>
-	<f:if condition="{publicUrl}">
-		<f:then>
-			<meta itemprop="embedUrl" content="{publicUrl}" />
-		</f:then>
-		<f:else>
-			<meta itemprop="contentUrl" content="{file.publicUrl}" />
-		</f:else>
-	</f:if>
-	<f:if condition="{creationDate}">
-		<meta itemprop="uploadDate" content="{creationDate -> f:format.date(format: 'c')}" />
-	</f:if>
-	<f:if condition="{file.properties.duration}">
-		<meta itemprop="duration" content="{file.properties.duration -> jw:format.secondsToISO8601()}" />
-	</f:if>
+    <div class="video-embed">
+        <f:if condition="{previewImage}">
+            <f:then>
+                <a href="#play" class="video-shariff-play" data-video="{playerHtml -> f:format.json()}">
+                    <f:image src="{previewImage}"
+                             width="{dimensions.width}"
+                             height="{dimensions.height}"
+                             alt="{file.title}"
+                             additionalAttributes="{itemprop:'thumbnailUrl'}"/>
+                    <span class="video-shariff-preview-overlay"></span>
+                    <div class="video-shariff-preview">
+                        <span class="video-shariff-preview-icon"></span>
+                        <span class="video-shariff-preview-text">{f:translate(key: 'preview.text', extensionName: 'videoShariff')}</span>
+                    </div>
+                </a>
+            </f:then>
+            <f:else>
+                <f:comment><!-- Render player directly if no helper is available (for local videos) --></f:comment>
+                <f:format.raw>{playerHtml}</f:format.raw>
+            </f:else>
+        </f:if>
+    </div>
+    <f:if condition="{file.description}">
+        <f:then>
+            <figcaption class="video-caption" itemprop="description">
+                {file.description}
+            </figcaption>
+        </f:then>
+        <f:else>
+            <f:if condition="{file.properties.caption}">
+                <f:then>
+                    <meta itemprop="description" content="{file.properties.caption}" />
+                </f:then>
+                <f:else>
+                    <f:if condition="{file.title}">
+                        <f:then>
+                            <meta itemprop="description" content="{file.title}" />
+                        </f:then>
+                        <f:else>
+                            <meta itemprop="description" content="{file.name}" />
+                        </f:else>
+                    </f:if>
+                </f:else>
+            </f:if>
+        </f:else>
+    </f:if>
+    <f:if condition="{file.title}">
+        <f:then>
+            <meta itemprop="name" content="{file.title}" />
+        </f:then>
+        <f:else>
+            <meta itemprop="name" content="{file.name}" />
+        </f:else>
+    </f:if>
+    <f:if condition="{publicUrl}">
+        <f:then>
+            <meta itemprop="embedUrl" content="{publicUrl}" />
+        </f:then>
+        <f:else>
+            <meta itemprop="contentUrl" content="{file.publicUrl}" />
+        </f:else>
+    </f:if>
+    <f:if condition="{creationDate}">
+        <meta itemprop="uploadDate" content="{creationDate -> f:format.date(format: 'c')}" />
+    </f:if>
+    <f:if condition="{file.properties.duration}">
+        <meta itemprop="duration" content="{file.properties.duration -> jw:format.secondsToISO8601()}" />
+    </f:if>
 </figure>
 </html>

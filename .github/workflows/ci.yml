@@ -10,12 +10,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        typo3: [ ^10.4, ^11.5 ]
-        php: [ '7.3', '7.4' ]
-        exclude:
-          - typo3: ^11.5
-            php: '7.3'
+        typo3: [ ^11.5, ^12.3 ]
+        php: [ '8.1' ]
         include:
+          - typo3: ^11.5
+            php: '7.4'
           - typo3: ^11.5
             php: '8.0'
 
@@ -41,8 +40,8 @@ jobs:
           composer require typo3/cms-core:${{ matrix.typo3 }} --no-progress
           git checkout composer.json
 
-      - name: php-cs-fixer
-        run: composer ci:php:fixer
-
       - name: Lint PHP
         run: composer ci:php:lint
+
+      - name: php-cs-fixer
+        run: composer ci:php:fixer

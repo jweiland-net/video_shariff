@@ -4,7 +4,7 @@
 	"description": "This extension provides more privacy when embedding videos in frontend.",
 	"license": "GPL-2.0-or-later",
 	"keywords": ["typo3", "TYPO3 CMS", "video", "shariff", "gdpr", "dsgvo"],
-	"homepage": "http://www.jweiland.net",
+	"homepage": "https://jweiland.net",
 	"authors": [
 		{
 			"name": "Stefan Froemken",
@@ -18,10 +18,10 @@
 		"source": "https://github.com/jweiland-net/video_shariff"
 	},
 	"require": {
-		"typo3/cms-core": "^10.4.29 || ^11.5.11"
+		"typo3/cms-core": "^11.5.23 || ^12.3.0"
 	},
 	"require-dev": {
-		"friendsofphp/php-cs-fixer": "3.4.0"
+		"friendsofphp/php-cs-fixer": "3.14"
 	},
 	"autoload": {
 		"psr-4": {
@@ -43,11 +43,9 @@
 		}
 	},
 	"scripts": {
-		"php:fix": ".build/vendor/bin/php-cs-fixer --config=Build/.php_cs.php fix Classes",
+		"php:fix": ".build/vendor/bin/php-cs-fixer --config=Build/php-cs-fixer/config.php fix Classes",
 		"ci:php:lint": "find *.php Classes Configuration -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
-		"ci:php:fixer": ".build/vendor/bin/php-cs-fixer --config=Build/.php_cs.php fix --dry-run -v --show-progress=dots --diff Classes",
-		"ci:tests:unit": "php .build/vendor/bin/phpunit -c .build/vendor/nimut/testing-framework/res/Configuration/UnitTests.xml Tests/Unit",
-		"ci:tests:functional": "php .build/vendor/bin/phpunit -c .build/vendor/nimut/testing-framework/res/Configuration/FunctionalTests.xml Tests/Functional",
+		"ci:php:fixer": ".build/vendor/bin/php-cs-fixer --config=Build/php-cs-fixer/config.php fix --dry-run -v --show-progress=dots --diff Classes",
 		"link-extension": [
 			"@php -r 'is_dir($extFolder=__DIR__.\"/.build/public/typo3conf/ext/\") || mkdir($extFolder, 0777, true);'",
 			"@php -r 'file_exists($extFolder=__DIR__.\"/.build/public/typo3conf/ext/video_shariff\") || symlink(__DIR__,$extFolder);'"
