@@ -4,7 +4,7 @@
       data-namespace-typo3-fluid="true">
 
 <f:variable name="previewImage" value="{jw:videoPreviewImage(fileReference: '{file}')}"/>
-<f:variable name="playerHtml" value="{f:render(partial: 'Media/Rendering/Video', arguments: '{file: file, dimensions: dimensions, settings: settings}')}"/>
+<f:variable name="playerHtml"><f:render partial="Media/Rendering/Video" arguments="{file: file, dimensions: dimensions, settings: settings}"/></f:variable>
 
 <figure class="video">
     <div class="video-embed">
@@ -18,7 +18,7 @@
                     <span class="video-shariff-preview-overlay"></span>
                     <div class="video-shariff-preview">
                         <span class="video-shariff-preview-icon"></span>
-                        <span class="video-shariff-preview-text"><f:translate key="preview.text" extensionName="videoShariff"/></span>
+                        <span class="video-shariff-preview-text">{f:translate(key: 'preview.text', extensionName: 'videoShariff')}</span>
                     </div>
                 </a>
             </f:then>
