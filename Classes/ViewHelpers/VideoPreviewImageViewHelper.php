@@ -58,10 +58,14 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
         }
 
         if (!($fileReference instanceof FileInterface || $fileReference instanceof AbstractFileFolder)) {
-            throw new \UnexpectedValueException('Supplied file object type ' . get_class($fileReference) . ' must be FileInterface or AbstractFileFolder.', 1454252193);
+            throw new \UnexpectedValueException(
+                'Supplied file object type ' . get_class($fileReference) . ' must be FileInterface or AbstractFileFolder.',
+                1454252193
+            );
         }
 
         $file = $fileReference->getOriginalFile();
+
         $helper = self::getOnlineMediaHelperRegistry()->getOnlineMediaHelper($file);
         if ($helper) {
             $privateFile = $helper->getPreviewImage($file);
@@ -75,13 +79,14 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
                 if (is_file($privateFile)) {
                     copy($privateFile, $publicFile);
                 } else {
-                    // sometimes OnlineMediaHelperInterface::getPreviewImage() returns a file that does not exist!
+                    // Sometimes OnlineMediaHelperInterface::getPreviewImage() returns a file that does not exist!
                     $publicFile = static::getDefaultThumbnailFile();
                 }
             }
         } else {
             $publicFile = '';
         }
+
         return $publicFile;
     }
 
@@ -97,8 +102,9 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
 
     protected static function getDefaultThumbnailFile(): string
     {
+        // ToDo: Change while removing TYPO3 11 compatibility
         $filename = static::getTypoScriptFrontendController()->tmpl->setup['lib.']['video_shariff.']['defaultThumbnail'];
-        if (str_starts_with($filename, 'EXT:')) {
+        if (strpos($filename, 'EXT:') === 0) {
             $file = GeneralUtility::getFileAbsFileName($filename);
         } else {
             $file = PathUtility::getAbsoluteWebPath($filename);
