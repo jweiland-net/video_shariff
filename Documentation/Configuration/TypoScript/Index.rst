@@ -32,7 +32,7 @@ specific page where you want to use the video_shariff functionality.
     `Available items` to search for `video_shariff`. Hopefully just one record
     is visible below. Choose it, to move that record to the left.
 
-    ..  figure:: ../Images/BasicConfiguration.png
+    ..  figure:: ../../Images/BasicConfiguration.png
         :width: 300px
         :alt: Configuration
 
@@ -45,7 +45,7 @@ specific page where you want to use the video_shariff functionality.
 
     Choose `Constant Editor` from the upper selectbox.
 
-    ..  figure:: ../Images/CustomThumbnailConstantEditor.png
+    ..  figure:: ../../Images/CustomThumbnailConstantEditor.png
         :width: 300px
         :alt: Constant editor
 
