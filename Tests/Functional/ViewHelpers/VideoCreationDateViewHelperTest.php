@@ -127,19 +127,19 @@ class VideoCreationDateViewHelperTest extends FunctionalTestCase
         return [
             'Extbase FileReference with content_creation_date returns 1683100800' => [$file1, 1683100800],
             'Core FileReference with content_creation_date returns 1683100800' => [$file1, 1683100800],
-            'Extbase FileReference with content_creation_date returns 1682928000' => [$file1, 1682928000],
-            'Core FileReference with content_creation_date returns 1682928000' => [$file1, 1682928000],
-            'Extbase FileReference with content_creation_date returns 1683014400' => [$file1, 1683014400],
-            'Core FileReference with content_creation_date returns 1683014400' => [$file1, 1683014400],
+            'Extbase FileReference with content_creation_date returns 1682928000' => [$file2, 1682928000],
+            'Core FileReference with content_creation_date returns 1682928000' => [$file2, 1682928000],
+            'Extbase FileReference with content_creation_date returns 1683014400' => [$file3, 1683014400],
+            'Core FileReference with content_creation_date returns 1683014400' => [$file3, 1683014400],
         ];
     }
 
     /**
      * @test
      *
-     * @dataProvider
+     * @dataProvider fileDataProvider
      */
-    public function videoCreateDateReturnContentCreationDate($file, string $expects): void
+    public function videoCreateDateReturnContentCreationDate($file, int $expects): void
     {
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->assign('file', $file);
