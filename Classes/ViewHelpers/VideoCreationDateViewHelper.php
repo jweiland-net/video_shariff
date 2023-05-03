@@ -45,11 +45,10 @@ class VideoCreationDateViewHelper extends AbstractViewHelper
      * @throws \UnexpectedValueException
      */
     public static function renderStatic(
-        array                     $arguments,
-        \Closure                  $renderChildrenClosure,
+        array $arguments,
+        \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ): int
-    {
+    ): int {
         /** @var FileReference|ExtbaseFileReference $fileReference */
         $fileReference = $arguments['fileReference'];
 
