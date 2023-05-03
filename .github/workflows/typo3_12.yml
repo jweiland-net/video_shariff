@@ -1,4 +1,4 @@
-name: Test sync_crop_areas against TYPO3 12
+name: Test video_shariff against TYPO3 12
 
 on: [pull_request]
 
