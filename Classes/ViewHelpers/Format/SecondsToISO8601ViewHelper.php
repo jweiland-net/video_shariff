@@ -29,13 +29,18 @@ class SecondsToISO8601ViewHelper extends AbstractViewHelper
      * @throws \UnexpectedValueException
      */
     public static function renderStatic(
-        array                     $arguments,
-        \Closure                  $renderChildrenClosure,
+        array $arguments,
+        \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ): string
-    {
+    ): string {
         $seconds = (int)$renderChildrenClosure();
-        $intervals = array('D' => 60 * 60 * 24, 'H' => 60 * 60, 'M' => 60, 'S' => 1);
+        $intervals = [
+            'D' => 60 * 60 * 24,
+            'H' => 60 * 60,
+            'M' => 60,
+            'S' => 1
+        ];
+
         $pt = 'P';
         $result = '';
         foreach ($intervals as $tag => $divisor) {
@@ -47,9 +52,11 @@ class SecondsToISO8601ViewHelper extends AbstractViewHelper
             $seconds -= $qty * $divisor;
             $result .= $qty . $tag;
         }
+
         if ($result === '') {
             $result = '0S';
         }
+
         return $pt . $result;
     }
 }
