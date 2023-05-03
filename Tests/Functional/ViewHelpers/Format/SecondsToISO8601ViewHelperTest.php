@@ -21,7 +21,7 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 class SecondsToISO8601ViewHelperTest extends FunctionalTestCase
 {
     protected array $testExtensionsToLoad = [
-        'typo3conf/ext/video_shariff'
+        'typo3conf/ext/video_shariff',
     ];
 
     protected function setUp(): void
@@ -63,7 +63,7 @@ class SecondsToISO8601ViewHelperTest extends FunctionalTestCase
             'xmlns:jw="http://typo3.org/ns/JWeiland/VideoShariff/ViewHelpers"',
             'data-namespace-typo3-fluid="true">',
             '{seconds -> jw:format.secondsToISO8601()}',
-            '</html>'
+            '</html>',
         ]));
 
         $view->assign('seconds', $seconds);
