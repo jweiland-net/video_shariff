@@ -1,4 +1,5 @@
 <?php
+
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Video Shariff',
     'description' => 'This extension provides more privacy when embedding videos in frontend.',
@@ -11,9 +12,9 @@ $EM_CONF[$_EXTKEY] = [
     'constraints' => [
         'depends' => [
             'typo3' => '11.5.23-12.4.99',
-            'fluid_styled_content' => '11.5.23-0.0.0'
+            'fluid_styled_content' => '11.5.23-0.0.0',
         ],
         'conflicts' => [],
         'suggests' => [],
-    ]
+    ],
 ];
