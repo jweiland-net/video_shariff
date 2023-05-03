@@ -26,11 +26,11 @@ nbproject
 
 # Temporary files and folders
 /.cache
+.phpunit.cache/
 .php_cs.cache
 .php-cs-fixer.cache
 .sass-cache
 .session
 *.log
-
 # Ignore composer stuff
 /composer.lock

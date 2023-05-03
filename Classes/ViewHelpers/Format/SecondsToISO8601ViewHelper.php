@@ -15,17 +15,13 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
- * Class SecondsToISO8601ViewHelper
+ * ViewHelper to convert seconds into ISO 8601 date
  */
 class SecondsToISO8601ViewHelper extends AbstractViewHelper
 {
     /**
-     * Returns the absolute web path to the preview image.
+     * Convert seconds into ISO 8601 date
      *
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
-     * @return string
      * @throws \UnexpectedValueException
      */
     public static function renderStatic(
@@ -34,29 +30,27 @@ class SecondsToISO8601ViewHelper extends AbstractViewHelper
         RenderingContextInterface $renderingContext
     ): string {
         $seconds = (int)$renderChildrenClosure();
-        $intervals = [
-            'D' => 60 * 60 * 24,
-            'H' => 60 * 60,
-            'M' => 60,
-            'S' => 1,
-        ];
-
-        $pt = 'P';
-        $result = '';
-        foreach ($intervals as $tag => $divisor) {
-            $qty = floor($seconds / $divisor);
-            if (!$qty && $result === '') {
-                $pt = 'T';
-                continue;
-            }
-            $seconds -= $qty * $divisor;
-            $result .= $qty . $tag;
+        if ($seconds === 0) {
+            return 'P0S';
         }
 
-        if ($result === '') {
-            $result = '0S';
-        }
+        return self::formatSecondsIntoISO8601($seconds);
+    }
 
-        return $pt . $result;
+    protected static function formatSecondsIntoISO8601(int $seconds): string
+    {
+        $days = floor($seconds / (3600 * 24));
+        $hours = floor(($seconds % (3600 * 24)) / 3600);
+        $minutes = floor(($seconds % 3600) / 60);
+        $seconds = $seconds % 60;
+
+        return sprintf(
+            'P%s%s%s%s%s',
+            $days ? $days . 'D' : '',
+            $hours || $minutes || $seconds ? 'T' : '',
+            $hours ? $hours . 'H' : '',
+            $minutes ? $minutes . 'M' : '',
+            $seconds ? $seconds . 'S' : ''
+        );
     }
 }

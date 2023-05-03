@@ -1,39 +1,28 @@
 <?php
 
-declare(strict_types=1);
-
-/*
- * This file is part of the package jweiland/video-shariff.
- *
- * For the full copyright and license information, please read the
- * LICENSE file that was distributed with this source code.
- */
-
-if (PHP_SAPI !== 'cli') {
-    die('This script supports command line usage only. Please check your command.');
-}
-
-$headerComment = <<<COMMENT
-This file is part of the package jweiland/video-shariff.
+$config = \TYPO3\CodingStandards\CsFixerConfig::create();
+$config->setHeader(
+    'This file is part of the package jweiland/video-shariff.
 
 For the full copyright and license information, please read the
-LICENSE file that was distributed with this source code.
-COMMENT;
-
-$finder = PhpCsFixer\Finder::create()
-    ->name('*.php')
-    ->exclude('.build')
-    ->in(__DIR__);
-
-return (new \PhpCsFixer\Config())
-    ->setFinder($finder)
+LICENSE file that was distributed with this source code.',
+    true
+);
+$config->setFinder(
+    (new PhpCsFixer\Finder())
+        ->in(realpath(__DIR__ . '/../../'))
+        ->ignoreVCSIgnored(true)
+        ->notPath('/^.Build\//')
+        ->notPath('/^Build\/php-cs-fixer\/php-cs-fixer.php/')
+        ->notPath('/^Build\/phpunit\/(UnitTestsBootstrap|FunctionalTestsBootstrap).php/')
+        ->notPath('/^Configuration\//')
+        ->notPath('/^Documentation\//')
+        ->notName('/^ext_(emconf|localconf|tables).php/')
+)
     ->setRiskyAllowed(true)
     ->setRules([
         '@DoctrineAnnotation' => true,
         '@PER' => true,
-        'header_comment' => [
-            'header' => $headerComment,
-        ],
         'array_syntax' => ['syntax' => 'short'],
         'blank_line_after_opening_tag' => true,
         'braces' => ['allow_single_line_closure' => true],
@@ -42,11 +31,9 @@ return (new \PhpCsFixer\Config())
         'concat_space' => ['spacing' => 'one'],
         'declare_equal_normalize' => ['space' => 'none'],
         'dir_constant' => true,
-        'function_to_constant' => ['functions' => ['get_called_class', 'get_class', 'get_class_this', 'php_sapi_name', 'phpversion', 'pi']],
         'function_typehint_space' => true,
         'lowercase_cast' => true,
         'method_argument_space' => ['on_multiline' => 'ensure_fully_multiline'],
-        'modernize_strpos' => false,
         'modernize_types_casting' => true,
         'native_function_casing' => true,
         'new_with_braces' => true,
@@ -86,3 +73,4 @@ return (new \PhpCsFixer\Config())
         'whitespace_after_comma_in_array' => ['ensure_single_space' => true],
         'yoda_style' => ['equal' => false, 'identical' => false, 'less_and_greater' => false],
     ]);
+return $config;

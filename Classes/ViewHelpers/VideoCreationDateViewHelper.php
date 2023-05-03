@@ -11,21 +11,19 @@ declare(strict_types=1);
 
 namespace JWeiland\VideoShariff\ViewHelpers;
 
-use TYPO3\CMS\Core\Resource\FileInterface;
+use JWeiland\VideoShariff\Traits\GetCoreFileReferenceTrait;
 use TYPO3\CMS\Core\Resource\FileReference;
-use TYPO3\CMS\Extbase\Domain\Model\AbstractFileFolder;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference as ExtbaseFileReference;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
- * Class VideoCreationDateViewHelper
+ * ViewHelper to extract date values from given FileReference
  */
 class VideoCreationDateViewHelper extends AbstractViewHelper
 {
-    /**
-     * Initialize arguments
-     */
+    use GetCoreFileReferenceTrait;
+
     public function initializeArguments(): void
     {
         $this->registerArgument(
@@ -36,12 +34,8 @@ class VideoCreationDateViewHelper extends AbstractViewHelper
     }
 
     /**
-     * Returns the absolute web path to the preview image.
+     * Returns date of given FileReference
      *
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
-     * @return int
      * @throws \UnexpectedValueException
      */
     public static function renderStatic(
@@ -49,27 +43,29 @@ class VideoCreationDateViewHelper extends AbstractViewHelper
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
     ): int {
-        /** @var FileReference|ExtbaseFileReference $fileReference */
-        $fileReference = $arguments['fileReference'];
+        // Early return, if object is not allowed
+        if (
+            $arguments['fileReference'] instanceof FileReference
+            || $arguments['fileReference'] instanceof ExtbaseFileReference
+        ) {
+            $fileReference = self::getCoreFileReference($arguments['fileReference']);
+        } else {
+            return 0;
+        }
 
-        // get Resource Object (non ExtBase version)
-        if (is_callable([$fileReference, 'getOriginalResource'])) {
-            // We have a domain model, so we need to fetch the FAL resource object from there
-            $fileReference = $fileReference->getOriginalResource();
-        }
-        if (!($fileReference instanceof FileInterface || $fileReference instanceof AbstractFileFolder)) {
-            throw new \UnexpectedValueException('Supplied file object type ' . get_class($fileReference) . ' must be FileInterface or AbstractFileFolder.', 1454252193);
-        }
         $file = $fileReference->getOriginalFile();
         if ($file->getProperty('content_creation_date')) {
             return $file->getProperty('content_creation_date');
         }
+
         if ($file->getProperty('creation_date')) {
             return $file->getProperty('creation_date');
         }
+
         if ($file->getProperty('crdate')) {
             return $file->getProperty('crdate');
         }
+
         return 0;
     }
 }

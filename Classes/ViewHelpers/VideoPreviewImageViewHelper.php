@@ -11,23 +11,27 @@ declare(strict_types=1);
 
 namespace JWeiland\VideoShariff\ViewHelpers;
 
+use JWeiland\VideoShariff\Traits\GetCoreFileReferenceTrait;
+use JWeiland\VideoShariff\Traits\GetOnlineMediaHelperTrait;
+use JWeiland\VideoShariff\Traits\GetTypoScriptSetupTrait;
 use TYPO3\CMS\Core\Core\Environment;
-use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\FileReference;
-use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
+use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\PathUtility;
-use TYPO3\CMS\Extbase\Domain\Model\AbstractFileFolder;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference as ExtbaseFileReference;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
- * Class VideoPreviewImageViewHelper
+ * ViewHelper to get preview image for video. If video is unavailable or private
+ * return a fallback image configured in lib.video_shariff.defaultThumbnail
  */
 class VideoPreviewImageViewHelper extends AbstractViewHelper
 {
+    use GetCoreFileReferenceTrait;
+    use GetOnlineMediaHelperTrait;
+    use GetTypoScriptSetupTrait;
+
     public function initializeArguments(): void
     {
         $this->registerArgument(
@@ -47,35 +51,33 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
     ): string {
-        $publicDirectory = Environment::getPublicPath() . '/typo3temp/assets/tx_videoshariff/';
-        /** @var FileReference|ExtbaseFileReference $fileReference */
-        $fileReference = $arguments['fileReference'];
+        $publicFile = '';
 
-        // get Resource Object (non ExtBase version)
-        if (is_callable([$fileReference, 'getOriginalResource'])) {
-            // We have a domain model, so we need to fetch the FAL resource object from there
-            $fileReference = $fileReference->getOriginalResource();
-        }
-
-        if (!($fileReference instanceof FileInterface || $fileReference instanceof AbstractFileFolder)) {
-            throw new \UnexpectedValueException(
-                'Supplied file object type ' . get_class($fileReference) . ' must be FileInterface or AbstractFileFolder.',
-                1454252193
-            );
+        // Early return, if object is not allowed
+        if (
+            $arguments['fileReference'] instanceof FileReference
+            || $arguments['fileReference'] instanceof ExtbaseFileReference
+        ) {
+            $fileReference = self::getCoreFileReference($arguments['fileReference']);
+        } else {
+            return $publicFile;
         }
 
         $file = $fileReference->getOriginalFile();
 
-        $helper = self::getOnlineMediaHelperRegistry()->getOnlineMediaHelper($file);
-        if ($helper) {
+        $helper = self::getOnlineMediaHelper($file);
+        if ($helper instanceof OnlineMediaHelperInterface) {
             $privateFile = $helper->getPreviewImage($file);
+            $publicDirectory = Environment::getPublicPath() . '/typo3temp/assets/tx_videoshariff/';
             $publicFile = $publicDirectory . substr($privateFile, strrpos($privateFile, '/') + 1);
+
             // check if file has already been copied
             if (!is_file($publicFile)) {
                 // check if public directory exists
                 if (!is_dir($publicDirectory)) {
                     GeneralUtility::mkdir_deep($publicDirectory);
                 }
+
                 if (is_file($privateFile)) {
                     copy($privateFile, $publicFile);
                 } else {
@@ -83,32 +85,15 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
                     $publicFile = static::getDefaultThumbnailFile();
                 }
             }
-        } else {
-            $publicFile = '';
         }
 
         return $publicFile;
     }
 
-    protected static function getTypoScriptFrontendController(): TypoScriptFrontendController
-    {
-        return $GLOBALS['TSFE'];
-    }
-
-    protected static function getOnlineMediaHelperRegistry(): OnlineMediaHelperRegistry
-    {
-        return GeneralUtility::makeInstance(OnlineMediaHelperRegistry::class);
-    }
-
     protected static function getDefaultThumbnailFile(): string
     {
-        // ToDo: Change while removing TYPO3 11 compatibility
-        $filename = static::getTypoScriptFrontendController()->tmpl->setup['lib.']['video_shariff.']['defaultThumbnail'];
-        if (strpos($filename, 'EXT:') === 0) {
-            $file = GeneralUtility::getFileAbsFileName($filename);
-        } else {
-            $file = PathUtility::getAbsoluteWebPath($filename);
-        }
-        return $file;
+        $filename = self::getTypoScriptSetup()['lib.']['video_shariff.']['defaultThumbnail'] ?? '';
+
+        return $filename ? GeneralUtility::getFileAbsFileName($filename) : '';
     }
 }
