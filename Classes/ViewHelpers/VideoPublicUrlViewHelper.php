@@ -46,11 +46,10 @@ class VideoPublicUrlViewHelper extends AbstractViewHelper
      * @throws \UnexpectedValueException
      */
     public static function renderStatic(
-        array                     $arguments,
-        \Closure                  $renderChildrenClosure,
+        array $arguments,
+        \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ): string
-    {
+    ): string {
         /** @var FileReference|ExtbaseFileReference $fileReference */
         $fileReference = $arguments['fileReference'];
 
