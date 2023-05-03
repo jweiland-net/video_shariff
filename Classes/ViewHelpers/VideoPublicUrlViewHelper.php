@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 namespace JWeiland\VideoShariff\ViewHelpers;
 
-use TYPO3\CMS\Core\Resource\FileInterface;
+use JWeiland\VideoShariff\Traits\GetCoreFileReferenceTrait;
+use JWeiland\VideoShariff\Traits\GetOnlineMediaHelperTrait;
 use TYPO3\CMS\Core\Resource\FileReference;
-use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
-use TYPO3\CMS\Extbase\Domain\Model\AbstractFileFolder;
+use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperInterface;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference as ExtbaseFileReference;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -24,9 +24,9 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class VideoPublicUrlViewHelper extends AbstractViewHelper
 {
-    /**
-     * Initialize arguments
-     */
+    use GetCoreFileReferenceTrait;
+    use GetOnlineMediaHelperTrait;
+
     public function initializeArguments(): void
     {
         $this->registerArgument(
@@ -39,10 +39,6 @@ class VideoPublicUrlViewHelper extends AbstractViewHelper
     /**
      * Returns the absolute web path to the preview image.
      *
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
-     * @return string
      * @throws \UnexpectedValueException
      */
     public static function renderStatic(
@@ -50,24 +46,24 @@ class VideoPublicUrlViewHelper extends AbstractViewHelper
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
     ): string {
-        /** @var FileReference|ExtbaseFileReference $fileReference */
-        $fileReference = $arguments['fileReference'];
+        $publicUrl = '';
 
-        // get Resource Object (non ExtBase version)
-        if (is_callable([$fileReference, 'getOriginalResource'])) {
-            // We have a domain model, so we need to fetch the FAL resource object from there
-            $fileReference = $fileReference->getOriginalResource();
-        }
-        if (!($fileReference instanceof FileInterface || $fileReference instanceof AbstractFileFolder)) {
-            throw new \UnexpectedValueException('Supplied file object type ' . get_class($fileReference) . ' must be FileInterface or AbstractFileFolder.', 1454252193);
-        }
-        $file = $fileReference->getOriginalFile();
-        $helper = OnlineMediaHelperRegistry::getInstance()->getOnlineMediaHelper($file);
-        if ($helper) {
-            $publicUrl = $helper->getPublicUrl($file);
+        // Early return, if object is not allowed
+        if (
+            $arguments['fileReference'] instanceof FileReference
+            || $arguments['fileReference'] instanceof ExtbaseFileReference
+        ) {
+            $fileReference = self::getCoreFileReference($arguments['fileReference']);
         } else {
-            $publicUrl = '';
+            return $publicUrl;
         }
+
+        $file = $fileReference->getOriginalFile();
+        $helper = self::getOnlineMediaHelper($file);
+        if ($helper instanceof OnlineMediaHelperInterface) {
+            $publicUrl = $helper->getPublicUrl($file);
+        }
+
         return $publicUrl;
     }
 }

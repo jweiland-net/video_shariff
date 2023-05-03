@@ -15,17 +15,13 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
- * Class SecondsToISO8601ViewHelper
+ * ViewHelper to convert seconds into ISO 8601 date
  */
 class SecondsToISO8601ViewHelper extends AbstractViewHelper
 {
     /**
-     * Returns the absolute web path to the preview image.
+     * Convert seconds into ISO 8601 date
      *
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
-     * @return string
      * @throws \UnexpectedValueException
      */
     public static function renderStatic(
@@ -49,14 +45,11 @@ class SecondsToISO8601ViewHelper extends AbstractViewHelper
                 $pt = 'T';
                 continue;
             }
+
             $seconds -= $qty * $divisor;
             $result .= $qty . $tag;
         }
 
-        if ($result === '') {
-            $result = '0S';
-        }
-
-        return $pt . $result;
+        return $result ? $pt . $result : '0S';
     }
 }
