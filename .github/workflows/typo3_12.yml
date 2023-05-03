@@ -25,7 +25,7 @@ jobs:
         run: Build/Scripts/runTests.sh -t 12 -p 8.1 -s cgl -n
 
   testing:
-    name: PHP Unit and Functional Tests
+    name: PHP ${{ matrix.php }} Unit and Functional Tests
     needs: CGL
 
     runs-on: ubuntu-latest
