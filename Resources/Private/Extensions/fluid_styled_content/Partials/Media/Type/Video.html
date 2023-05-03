@@ -4,9 +4,11 @@
       data-namespace-typo3-fluid="true">
 
 <f:variable name="previewImage" value="{jw:videoPreviewImage(fileReference: '{file}')}"/>
+<f:variable name="publicUrl" value="{jw:videoPublicUrl(fileReference: '{file}')}" />
+<f:variable name="creationDate" value="{jw:videoCreationDate(fileReference: '{file}')}" />
 <f:variable name="playerHtml"><f:render partial="Media/Rendering/Video" arguments="{file: file, dimensions: dimensions, settings: settings}"/></f:variable>
 
-<figure class="video">
+<figure class="video" itemprop="video" itemscope itemtype="https://schema.org/VideoObject">
     <div class="video-embed">
         <f:if condition="{previewImage}">
             <f:then>
@@ -14,7 +16,8 @@
                     <f:image src="{previewImage}"
                              width="{dimensions.width}"
                              height="{dimensions.height}"
-                             alt="{file.title}"/>
+                             alt="{file.title}"
+                             additionalAttributes="{itemprop:'thumbnailUrl'}"/>
                     <span class="video-shariff-preview-overlay"></span>
                     <div class="video-shariff-preview">
                         <span class="video-shariff-preview-icon"></span>
@@ -29,9 +32,50 @@
         </f:if>
     </div>
     <f:if condition="{file.description}">
-        <figcaption class="video-caption">
-            {file.description}
-        </figcaption>
+        <f:then>
+            <figcaption class="video-caption" itemprop="description">
+                {file.description}
+            </figcaption>
+        </f:then>
+        <f:else>
+            <f:if condition="{file.properties.caption}">
+                <f:then>
+                    <meta itemprop="description" content="{file.properties.caption}" />
+                </f:then>
+                <f:else>
+                    <f:if condition="{file.title}">
+                        <f:then>
+                            <meta itemprop="description" content="{file.title}" />
+                        </f:then>
+                        <f:else>
+                            <meta itemprop="description" content="{file.name}" />
+                        </f:else>
+                    </f:if>
+                </f:else>
+            </f:if>
+        </f:else>
+    </f:if>
+    <f:if condition="{file.title}">
+        <f:then>
+            <meta itemprop="name" content="{file.title}" />
+        </f:then>
+        <f:else>
+            <meta itemprop="name" content="{file.name}" />
+        </f:else>
+    </f:if>
+    <f:if condition="{publicUrl}">
+        <f:then>
+            <meta itemprop="embedUrl" content="{publicUrl}" />
+        </f:then>
+        <f:else>
+            <meta itemprop="contentUrl" content="{file.publicUrl}" />
+        </f:else>
+    </f:if>
+    <f:if condition="{creationDate}">
+        <meta itemprop="uploadDate" content="{creationDate -> f:format.date(format: 'c')}" />
+    </f:if>
+    <f:if condition="{file.properties.duration}">
+        <meta itemprop="duration" content="{file.properties.duration -> jw:format.secondsToISO8601()}" />
     </f:if>
 </figure>
 </html>
