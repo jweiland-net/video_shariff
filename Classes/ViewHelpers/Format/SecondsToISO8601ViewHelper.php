@@ -38,7 +38,7 @@ class SecondsToISO8601ViewHelper extends AbstractViewHelper
             'D' => 60 * 60 * 24,
             'H' => 60 * 60,
             'M' => 60,
-            'S' => 1
+            'S' => 1,
         ];
 
         $pt = 'P';
