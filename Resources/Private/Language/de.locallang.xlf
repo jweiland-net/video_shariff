@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2018-03-18T17:38:20Z" product-name="video_shariff">
-		<header/>
-		<body>
-			<trans-unit id="preview.text">
-				<source>We take care about your privacy. Only when you click here, data from third party servers will be loaded.</source>
-				<target>Der Schutz Ihrer Daten ist uns wichtig. Erst wenn Sie hier klicken, erlauben Sie uns, Daten von Dritt-Anbieter-Servern zu laden.</target>
-			</trans-unit>
-		</body>
-	</file>
+  <file source-language="en" datatype="plaintext" original="messages" date="2018-03-18T17:38:20Z" product-name="video_shariff" target-language="de">
+    <header/>
+    <body>
+      <trans-unit id="preview.text">
+        <source>We take care about your privacy. Only when you click here, data from third party servers will be loaded.</source>
+        <target state="translated">Der Schutz Ihrer Daten ist uns wichtig. Erst wenn Sie hier klicken, erlauben Sie uns, Daten von Dritt-Anbieter-Servern zu laden.</target>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>
