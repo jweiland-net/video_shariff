@@ -3,9 +3,9 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2018-03-18T17:38:20Z" product-name="video_shariff" target-language="de">
     <header/>
     <body>
-      <trans-unit id="preview.text">
+      <trans-unit id="preview.text" approved="yes">
         <source>We take care about your privacy. Only when you click here, data from third party servers will be loaded.</source>
-        <target state="translated">Der Schutz Ihrer Daten ist uns wichtig. Erst wenn Sie hier klicken, erlauben Sie uns, Daten von Dritt-Anbieter-Servern zu laden.</target>
+        <target state="final">Der Schutz Ihrer Daten ist uns wichtig. Erst wenn Sie hier klicken, erlauben Sie uns, Daten von Dritt-Anbieter-Servern zu laden.</target>
       </trans-unit>
     </body>
   </file>
