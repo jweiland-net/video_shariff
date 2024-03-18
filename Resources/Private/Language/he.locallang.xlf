@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2018-03-18T17:38:20Z" product-name="video_shariff" target-language="he">
+    <header/>
+    <body>
+      <trans-unit id="preview.text">
+        <source>We take care about your privacy. Only when you click here, data from third party servers will be loaded.</source>
+        <target state="needs-translation">We take care about your privacy. Only when you click here, data from third party servers will be loaded.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
