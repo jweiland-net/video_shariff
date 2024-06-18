@@ -18,6 +18,7 @@ use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference as ExtbaseFileReference;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -94,6 +95,6 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
     {
         $filename = self::getTypoScriptSetup()['lib.']['video_shariff.']['defaultThumbnail'] ?? '';
 
-        return $filename ? GeneralUtility::getFileAbsFileName($filename) : '';
+        return $filename ? PathUtility::getPublicResourceWebPath($filename) : '';
     }
 }
