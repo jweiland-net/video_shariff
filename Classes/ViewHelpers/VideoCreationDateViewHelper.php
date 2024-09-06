@@ -29,7 +29,7 @@ class VideoCreationDateViewHelper extends AbstractViewHelper
         $this->registerArgument(
             'fileReference',
             'object',
-            'FileReference to be used for creating the preview image'
+            'FileReference to be used for creating the preview image',
         );
     }
 
@@ -41,7 +41,7 @@ class VideoCreationDateViewHelper extends AbstractViewHelper
     public static function renderStatic(
         array $arguments,
         \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
+        RenderingContextInterface $renderingContext,
     ): int {
         // Early return, if object is not allowed
         if (

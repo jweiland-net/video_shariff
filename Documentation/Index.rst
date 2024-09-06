@@ -42,6 +42,7 @@ This extension provides more privacy when embedding videos in frontend.
     Introduction/Index
     Installation/Index
     Configuration/Index
+    Update/Index
     Links
 
 ..  Meta Menu

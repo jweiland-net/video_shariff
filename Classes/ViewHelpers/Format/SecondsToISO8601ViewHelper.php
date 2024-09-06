@@ -27,7 +27,7 @@ class SecondsToISO8601ViewHelper extends AbstractViewHelper
     public static function renderStatic(
         array $arguments,
         \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
+        RenderingContextInterface $renderingContext,
     ): string {
         $seconds = (int)$renderChildrenClosure();
         if ($seconds === 0) {
@@ -50,7 +50,7 @@ class SecondsToISO8601ViewHelper extends AbstractViewHelper
             $hours || $minutes || $seconds ? 'T' : '',
             $hours ? $hours . 'H' : '',
             $minutes ? $minutes . 'M' : '',
-            $seconds ? $seconds . 'S' : ''
+            $seconds ? $seconds . 'S' : '',
         );
     }
 }

@@ -76,13 +76,13 @@ class VideoCreationDateViewHelperTest extends FunctionalTestCase
         $view->assign('file', $coreFileReference);
         self::assertSame(
             '1683100800',
-            trim($view->render())
+            trim($view->render()),
         );
 
         $view->assign('file', $extbaseFileReference);
         self::assertSame(
             '1683100800',
-            trim($view->render())
+            trim($view->render()),
         );
     }
 
@@ -126,13 +126,13 @@ class VideoCreationDateViewHelperTest extends FunctionalTestCase
         $view->assign('file', $coreFileReference);
         self::assertSame(
             '1682928000',
-            trim($view->render())
+            trim($view->render()),
         );
 
         $view->assign('file', $extbaseFileReference);
         self::assertSame(
             '1682928000',
-            trim($view->render())
+            trim($view->render()),
         );
     }
 
@@ -176,13 +176,13 @@ class VideoCreationDateViewHelperTest extends FunctionalTestCase
         $view->assign('file', $coreFileReference);
         self::assertSame(
             '1683014400',
-            trim($view->render())
+            trim($view->render()),
         );
 
         $view->assign('file', $extbaseFileReference);
         self::assertSame(
             '1683014400',
-            trim($view->render())
+            trim($view->render()),
         );
     }
 }

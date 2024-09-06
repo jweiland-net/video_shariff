@@ -13,7 +13,6 @@ namespace JWeiland\VideoShariff\ViewHelpers;
 
 use JWeiland\VideoShariff\Traits\GetCoreFileReferenceTrait;
 use JWeiland\VideoShariff\Traits\GetOnlineMediaHelperTrait;
-use JWeiland\VideoShariff\Traits\GetTypoScriptSetupTrait;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperInterface;
@@ -30,14 +29,22 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
 {
     use GetCoreFileReferenceTrait;
     use GetOnlineMediaHelperTrait;
-    use GetTypoScriptSetupTrait;
+
+    private const FALLBACK_THUMBNAIL_FILE = 'EXT:video_shariff/Resources/Public/Images/DefaultThumbnail.png';
 
     public function initializeArguments(): void
     {
         $this->registerArgument(
             'fileReference',
             'object',
-            'FileReference to be used for creating the preview image'
+            'FileReference to be used for creating the preview image',
+        );
+        $this->registerArgument(
+            'fallbackThumbnailFile',
+            'string',
+            'This file will be used as fallback if video thubnail could not be retrieved because of unavailable or private video',
+            false,
+            self::FALLBACK_THUMBNAIL_FILE,
         );
     }
 
@@ -49,7 +56,7 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
     public static function renderStatic(
         array $arguments,
         \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
+        RenderingContextInterface $renderingContext,
     ): string {
         $publicFile = '';
 
@@ -81,19 +88,11 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
                 if (is_file($privateFile)) {
                     copy($privateFile, $publicFile);
                 } else {
-                    // Sometimes OnlineMediaHelperInterface::getPreviewImage() returns a file that does not exist!
-                    $publicFile = static::getDefaultThumbnailFile();
+                    $publicFile = $arguments['fallbackThumbnailFile'] ?? self::FALLBACK_THUMBNAIL_FILE;
                 }
             }
         }
 
         return $publicFile;
-    }
-
-    protected static function getDefaultThumbnailFile(): string
-    {
-        $filename = self::getTypoScriptSetup()['lib.']['video_shariff.']['defaultThumbnail'] ?? '';
-
-        return $filename ? GeneralUtility::getFileAbsFileName($filename) : '';
     }
 }
