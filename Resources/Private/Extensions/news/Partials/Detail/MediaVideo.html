@@ -3,7 +3,7 @@
       xmlns:jw="http://typo3.org/ns/JWeiland/VideoShariff/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
-<f:variable name="previewImage" value="{jw:videoPreviewImage(fileReference: '{mediaElement}')}"/>
+<f:variable name="previewImage" value="{jw:videoPreviewImage(fileReference: mediaElement, fallbackThumbnailFile: settings.video_shariff.defaultThumbnail)}"/>
 <f:variable name="playerHtml"><f:media file="{mediaElement}" width="{settings.detail.media.video.width}" height="{settings.detail.media.video.height}"/></f:variable>
 
 <div class="mediaelement">

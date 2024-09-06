@@ -3,9 +3,9 @@
       xmlns:jw="http://typo3.org/ns/JWeiland/VideoShariff/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
-<f:variable name="previewImage" value="{jw:videoPreviewImage(fileReference: '{file}')}"/>
-<f:variable name="publicUrl" value="{jw:videoPublicUrl(fileReference: '{file}')}" />
-<f:variable name="creationDate" value="{jw:videoCreationDate(fileReference: '{file}')}" />
+<f:variable name="previewImage" value="{jw:videoPreviewImage(fileReference: file, fallbackThumbnailFile: settings.video_shariff.defaultThumbnail)}"/>
+<f:variable name="publicUrl" value="{jw:videoPublicUrl(fileReference: file)}" />
+<f:variable name="creationDate" value="{jw:videoCreationDate(fileReference: file)}" />
 <f:variable name="playerHtml"><f:render partial="Media/Rendering/Video" arguments="{file: file, dimensions: dimensions, settings: settings}"/></f:variable>
 
 <figure class="video" itemprop="video" itemscope itemtype="https://schema.org/VideoObject">

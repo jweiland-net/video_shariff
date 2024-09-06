@@ -3,7 +3,14 @@
 	"type": "typo3-cms-extension",
 	"description": "This extension provides more privacy when embedding videos in frontend.",
 	"license": "GPL-2.0-or-later",
-	"keywords": ["typo3", "TYPO3 CMS", "video", "shariff", "gdpr", "dsgvo"],
+	"keywords": [
+		"typo3",
+		"TYPO3 CMS",
+		"video",
+		"shariff",
+		"gdpr",
+		"dsgvo"
+	],
 	"homepage": "https://jweiland.net",
 	"authors": [
 		{

@@ -9,7 +9,7 @@ TypoScript
 
 `video_shariff` needs some basic TypoScript configuration. To do so you have
 to add an +ext template to either the root page of your website or to a
-specific page where you want to use the video_shariff functionality.
+specific page where you want to use the `video_shariff` functionality.
 
 ..  rst-class:: bignums
 

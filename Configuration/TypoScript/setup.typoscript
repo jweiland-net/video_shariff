@@ -5,14 +5,14 @@ lib.contentElement {
   partialRootPaths {
     1526542481 = EXT:video_shariff/Resources/Private/Extensions/fluid_styled_content/Partials/
   }
+  settings.video_shariff.defaultThumbnail = {$lib.video_shariff.defaultThumbnail}
 }
 
-plugin.tx_news.view {
-  partialRootPaths {
-    1526542481 = EXT:video_shariff/Resources/Private/Extensions/news/Partials/
+plugin.tx_news {
+  view {
+    partialRootPaths {
+      1526542481 = EXT:video_shariff/Resources/Private/Extensions/news/Partials/
+    }
   }
-}
-
-lib.video_shariff {
-  defaultThumbnail = {$lib.video_shariff.defaultThumbnail}
+  settings.video_shariff.defaultThumbnail = {$lib.video_shariff.defaultThumbnail}
 }
