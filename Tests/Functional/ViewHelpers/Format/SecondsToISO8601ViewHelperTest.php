@@ -70,7 +70,7 @@ class SecondsToISO8601ViewHelperTest extends FunctionalTestCase
 
         self::assertSame(
             $expected,
-            trim($view->render())
+            trim($view->render()),
         );
     }
 }

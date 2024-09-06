@@ -37,14 +37,14 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
         $this->registerArgument(
             'fileReference',
             'object',
-            'FileReference to be used for creating the preview image'
+            'FileReference to be used for creating the preview image',
         );
         $this->registerArgument(
             'fallbackThumbnailFile',
             'string',
             'This file will be used as fallback if video thubnail could not be retrieved because of unavailable or private video',
             false,
-            self::FALLBACK_THUMBNAIL_FILE
+            self::FALLBACK_THUMBNAIL_FILE,
         );
     }
 
@@ -56,7 +56,7 @@ class VideoPreviewImageViewHelper extends AbstractViewHelper
     public static function renderStatic(
         array $arguments,
         \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
+        RenderingContextInterface $renderingContext,
     ): string {
         $publicFile = '';
 

@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package jweiland/video-shariff.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Video Shariff',
     'description' => 'This extension provides more privacy when embedding videos in frontend.',

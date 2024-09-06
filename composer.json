@@ -1,8 +1,8 @@
 {
 	"name": "jweiland/video-shariff",
-	"type": "typo3-cms-extension",
 	"description": "This extension provides more privacy when embedding videos in frontend.",
 	"license": "GPL-2.0-or-later",
+	"type": "typo3-cms-extension",
 	"keywords": [
 		"typo3",
 		"TYPO3 CMS",
@@ -11,7 +11,6 @@
 		"gdpr",
 		"dsgvo"
 	],
-	"homepage": "https://jweiland.net",
 	"authors": [
 		{
 			"name": "Stefan Froemken",
@@ -19,6 +18,7 @@
 			"role": "Developer"
 		}
 	],
+	"homepage": "https://jweiland.net",
 	"support": {
 		"email": "projects@jweiland.net",
 		"issues": "https://github.com/jweiland-net/video_shariff/issues",
@@ -28,11 +28,10 @@
 		"typo3/cms-core": "^11.5.23 || ^12.3.0"
 	},
 	"require-dev": {
-		"sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": "^0.1",
-		"typo3/testing-framework": "^7.0",
+		"ergebnis/composer-normalize": "~2.42.0",
+		"friendsofphp/php-cs-fixer": "^3.14",
 		"phpunit/phpunit": "^9.6",
-		"typo3/coding-standards": "^0.6",
-		"friendsofphp/php-cs-fixer": "^3.14"
+		"typo3/testing-framework": "^7.0.2"
 	},
 	"replace": {
 		"typo3-ter/video_shariff": "self.version"
@@ -43,17 +42,18 @@
 		}
 	},
 	"config": {
-		"vendor-dir": ".Build/vendor",
-		"bin-dir": ".Build/bin",
 		"allow-plugins": {
-			"typo3/cms-composer-installers": true,
-			"typo3/class-alias-loader": true
-		}
+			"ergebnis/composer-normalize": true,
+			"typo3/class-alias-loader": true,
+			"typo3/cms-composer-installers": true
+		},
+		"bin-dir": ".Build/bin",
+		"vendor-dir": ".Build/vendor"
 	},
 	"extra": {
 		"typo3/cms": {
-			"extension-key": "video_shariff",
 			"app-dir": ".Build",
+			"extension-key": "video_shariff",
 			"web-dir": ".Build/public"
 		}
 	}

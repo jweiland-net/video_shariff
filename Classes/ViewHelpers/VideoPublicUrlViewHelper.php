@@ -32,7 +32,7 @@ class VideoPublicUrlViewHelper extends AbstractViewHelper
         $this->registerArgument(
             'fileReference',
             'object',
-            'FileReference to be used for creating the preview image'
+            'FileReference to be used for creating the preview image',
         );
     }
 
@@ -44,7 +44,7 @@ class VideoPublicUrlViewHelper extends AbstractViewHelper
     public static function renderStatic(
         array $arguments,
         \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
+        RenderingContextInterface $renderingContext,
     ): string {
         $publicUrl = '';
 
