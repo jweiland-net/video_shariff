@@ -34,3 +34,8 @@ nbproject
 *.log
 # Ignore composer stuff
 /composer.lock
+
+# Ignore testing stuff
+/.Build
+/composer.json.orig
+/composer.json.testing

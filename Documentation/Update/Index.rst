@@ -7,6 +7,11 @@
 Update
 ======
 
+Update to version 4.0.0
+=======================
+
+Version 4.0.0 is mainly focussed on TYPO3 13 LTS related fixes.
+
 Update to version 3.1.0
 =======================
 
