@@ -15,7 +15,12 @@
 		{
 			"name": "Stefan Froemken",
 			"email": "projects@jweiland.net",
-			"role": "Developer"
+			"role": "Lead TYPO3 Developer"
+		},
+		{
+			"name": "Hoja Mustaffa Abdul Latheef",
+			"email": "projects@jweiland.net",
+			"role": "Senior TYPO3 Developer"
 		}
 	],
 	"homepage": "https://jweiland.net",
@@ -25,7 +30,7 @@
 		"source": "https://github.com/jweiland-net/video_shariff"
 	},
 	"require": {
-		"typo3/cms-core": "^11.5.23 || ^12.3.0"
+		"typo3/cms-core": "^11.5.41 || ^12.4.22"
 	},
 	"require-dev": {
 		"ergebnis/composer-normalize": "~2.42.0",
