@@ -32,5 +32,16 @@ nbproject
 .sass-cache
 .session
 *.log
+
 # Ignore composer stuff
-/composer.lock
+bin/*
+vendor/*
+.build
+.Build
+.php_cs.cache
+composer.lock
+
+# Ignore testing stuff
+/.Build
+/composer.json.orig
+/composer.json.testing
