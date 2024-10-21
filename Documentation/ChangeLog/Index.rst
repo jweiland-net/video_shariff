@@ -10,7 +10,9 @@ ChangeLog
 Version 3.2.0
 =============
 
-*   [BUGFIX]
+*   [TASK] Fixed Broken badge url
+*   [TASK] Documentation ChangeLog page added
+*   [BUGFIX] Prevent TypeError when returning public
 
 Version 3.1.0
 =============
