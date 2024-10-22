@@ -32,8 +32,14 @@ nbproject
 .sass-cache
 .session
 *.log
+
 # Ignore composer stuff
 /composer.lock
+bin/*
+vendor/*
+.build
+.Build
+composer.lock
 
 # Ignore testing stuff
 /.Build

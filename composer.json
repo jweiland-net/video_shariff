@@ -15,7 +15,12 @@
 		{
 			"name": "Stefan Froemken",
 			"email": "projects@jweiland.net",
-			"role": "Developer"
+			"role": "Lead TYPO3 Developer"
+		},
+		{
+			"name": "Hoja Mustaffa Abdul Latheef",
+			"email": "projects@jweiland.net",
+			"role": "Senior TYPO3 Developer"
 		}
 	],
 	"homepage": "https://jweiland.net",

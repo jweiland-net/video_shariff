@@ -61,7 +61,7 @@ class VideoPublicUrlViewHelper extends AbstractViewHelper
         $file = $fileReference->getOriginalFile();
         $helper = self::getOnlineMediaHelper($file);
         if ($helper instanceof OnlineMediaHelperInterface) {
-            $publicUrl = $helper->getPublicUrl($file);
+            $publicUrl = $helper->getPublicUrl($file) ?? '';
         }
 
         return $publicUrl;
