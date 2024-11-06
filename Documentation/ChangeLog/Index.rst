@@ -7,6 +7,12 @@
 ChangeLog
 =========
 
+Version 4.0.0
+=============
+
+*   [TASK] Compatibiliy fixes for TYPO3 13 LTS.
+*   [TASK] Documentation settings changed from settings.cfg to guides.xml
+
 Version 3.2.0
 =============
 
