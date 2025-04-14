@@ -2,7 +2,6 @@
 
 [![Packagist][packagist-logo-stable]][extension-packagist-url]
 [![Latest Stable Version][extension-build-shield]][extension-ter-url]
-[![License][LICENSE_BADGE]][extension-packagist-url]
 [![Total Downloads][extension-downloads-badge]][extension-packagist-url]
 [![Monthly Downloads][extension-monthly-downloads]][extension-packagist-url]
 [![TYPO3 12.4][TYPO3-shield]][TYPO3-12-url]
@@ -55,5 +54,3 @@ Download and install `video_shariff` with the extension manager module.
 [TYPO3-12-url]: https://get.typo3.org/version/12
 
 [TYPO3-shield]: https://img.shields.io/badge/TYPO3-12.4-green.svg?style=for-the-badge&logo=typo3
-
-[LICENSE_BADGE]: https://img.shields.io/github/license/jweiland-net/video_shariff?label=license&style=for-the-badge
