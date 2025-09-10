@@ -37,6 +37,12 @@ Download and install `video_shariff` with the extension manager module.
 1) Include the static TypoScript of the extension.
 2) Clear Cache.
 
+## 3 Support
+
+Free Support is available via [GitHub Issue Tracker](https://github.com/jweiland-net/video_shariff/issues).
+
+For commercial support, please contact us at [support@jweiland.net](support@jweiland.net).
+
 [extension-build-shield]: https://poser.pugx.org/jweiland/video-shariff/v/stable.svg?style=for-the-badge
 
 [extension-ci-shield]: https://github.com/jweiland-net/video_shariff/actions/workflows/ci.yml/badge.svg
