@@ -28,7 +28,7 @@ return (new Config())
         (new Finder())
             ->in(__DIR__ . '/../../')
             ->exclude(__DIR__ . '/../../.Build')
-            ->exclude(__DIR__ . '/../../var')
+            ->exclude(__DIR__ . '/../../../var')
     )
     ->setRiskyAllowed(true)
     ->setRules([
