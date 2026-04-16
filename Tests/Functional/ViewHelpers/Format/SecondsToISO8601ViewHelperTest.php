@@ -11,9 +11,10 @@ declare(strict_types=1);
 
 namespace JWeiland\VideoShariff\Tests\Functional\ViewHelpers\Format;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Core\Http\ServerRequest;
+use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextFactory;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
+use TYPO3Fluid\Fluid\View\TemplateView;
 
 /**
  * Test case.
@@ -23,15 +24,6 @@ class SecondsToISO8601ViewHelperTest extends FunctionalTestCase
     protected array $testExtensionsToLoad = [
         'typo3conf/ext/video_shariff',
     ];
-
-    protected function setUp(): void
-    {
-        if (!defined('ORIGINAL_ROOT')) {
-            define('ORIGINAL_ROOT', $_ENV['TYPO3_PATH_ROOT']);
-        }
-
-        parent::setUp();
-    }
 
     public static function secondsDataProvider(): array
     {
@@ -55,17 +47,20 @@ class SecondsToISO8601ViewHelperTest extends FunctionalTestCase
      *
      * @dataProvider secondsDataProvider
      */
-    public function formatSecondsToISO8601(int $seconds, string $expected)
+    public function formatSecondsToISO8601(int $seconds, string $expected): void
     {
-        $view = GeneralUtility::makeInstance(StandaloneView::class);
-        $view->setTemplateSource(implode(' ', [
+        $templateSource = implode(' ', [
             '<html lang="en" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"',
             'xmlns:jw="http://typo3.org/ns/JWeiland/VideoShariff/ViewHelpers"',
             'data-namespace-typo3-fluid="true">',
             '{seconds -> jw:format.secondsToISO8601()}',
             '</html>',
-        ]));
+        ]);
 
+        $request = new ServerRequest('http://localhost/', 'GET');
+        $context = $this->get(RenderingContextFactory::class)->create([], $request);
+        $context->getTemplatePaths()->setTemplateSource($templateSource);
+        $view = new TemplateView($context);
         $view->assign('seconds', $seconds);
 
         self::assertSame(
