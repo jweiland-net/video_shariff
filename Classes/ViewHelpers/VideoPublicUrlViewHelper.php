@@ -12,11 +12,10 @@ declare(strict_types=1);
 namespace JWeiland\VideoShariff\ViewHelpers;
 
 use JWeiland\VideoShariff\Traits\GetCoreFileReferenceTrait;
-use JWeiland\VideoShariff\Traits\GetOnlineMediaHelperTrait;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperInterface;
+use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference as ExtbaseFileReference;
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
@@ -25,7 +24,10 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 class VideoPublicUrlViewHelper extends AbstractViewHelper
 {
     use GetCoreFileReferenceTrait;
-    use GetOnlineMediaHelperTrait;
+
+    public function __construct(
+        private readonly OnlineMediaHelperRegistry $onlineMediaHelperRegistry,
+    ) {}
 
     public function initializeArguments(): void
     {
@@ -37,29 +39,26 @@ class VideoPublicUrlViewHelper extends AbstractViewHelper
     }
 
     /**
-     * Returns the absolute web path to the preview image.
+     * Returns the public URL of the online media resource.
      *
      * @throws \UnexpectedValueException
      */
-    public static function renderStatic(
-        array $arguments,
-        \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext,
-    ): string {
+    public function render(): string
+    {
         $publicUrl = '';
 
         // Early return, if object is not allowed
         if (
-            $arguments['fileReference'] instanceof FileReference
-            || $arguments['fileReference'] instanceof ExtbaseFileReference
+            $this->arguments['fileReference'] instanceof FileReference
+            || $this->arguments['fileReference'] instanceof ExtbaseFileReference
         ) {
-            $fileReference = self::getCoreFileReference($arguments['fileReference']);
+            $fileReference = self::getCoreFileReference($this->arguments['fileReference']);
         } else {
             return $publicUrl;
         }
 
         $file = $fileReference->getOriginalFile();
-        $helper = self::getOnlineMediaHelper($file);
+        $helper = $this->onlineMediaHelperRegistry->getOnlineMediaHelper($file);
         if ($helper instanceof OnlineMediaHelperInterface) {
             $publicUrl = $helper->getPublicUrl($file) ?? '';
         }
