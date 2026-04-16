@@ -15,7 +15,6 @@
 .DS_Store
 
 # Ignore by common IDEs used directories/files
-var
 nbproject
 *.idea
 *.project
@@ -36,6 +35,7 @@ nbproject
 
 # Ignore composer stuff
 /composer.lock
+var/*
 bin/*
 vendor/*
 .build
