@@ -11,12 +11,13 @@ declare(strict_types=1);
 
 namespace JWeiland\VideoShariff\Tests\Functional\ViewHelpers;
 
+use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\FileReference;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference as ExtbaseFileReference;
-use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextFactory;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
+use TYPO3Fluid\Fluid\View\TemplateView;
 
 /**
  * Test case.
@@ -27,13 +28,24 @@ class VideoCreationDateViewHelperTest extends FunctionalTestCase
         'typo3conf/ext/video_shariff',
     ];
 
-    protected function setUp(): void
+    private function buildTemplateView(string $templateSource): TemplateView
     {
-        if (!defined('ORIGINAL_ROOT')) {
-            define('ORIGINAL_ROOT', $_ENV['TYPO3_PATH_ROOT']);
-        }
+        $request = new ServerRequest('http://localhost/', 'GET');
+        $context = $this->get(RenderingContextFactory::class)->create([], $request);
+        $context->getTemplatePaths()->setTemplateSource($templateSource);
 
-        parent::setUp();
+        return new TemplateView($context);
+    }
+
+    private function getTemplateSource(): string
+    {
+        return implode(' ', [
+            '<html lang="en" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"',
+            'xmlns:jw="http://typo3.org/ns/JWeiland/VideoShariff/ViewHelpers"',
+            'data-namespace-typo3-fluid="true">',
+            '{jw:videoCreationDate(fileReference: \'{file}\')}',
+            '</html>',
+        ]);
     }
 
     /**
@@ -64,26 +76,13 @@ class VideoCreationDateViewHelperTest extends FunctionalTestCase
         $extbaseFileReference = new ExtbaseFileReference();
         $extbaseFileReference->setOriginalResource($coreFileReference);
 
-        $view = GeneralUtility::makeInstance(StandaloneView::class);
-        $view->setTemplateSource(implode(' ', [
-            '<html lang="en" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"',
-            'xmlns:jw="http://typo3.org/ns/JWeiland/VideoShariff/ViewHelpers"',
-            'data-namespace-typo3-fluid="true">',
-            '{jw:videoCreationDate(fileReference: \'{file}\')}',
-            '</html>',
-        ]));
-
+        $view = $this->buildTemplateView($this->getTemplateSource());
         $view->assign('file', $coreFileReference);
-        self::assertSame(
-            '1683100800',
-            trim($view->render()),
-        );
+        self::assertSame('1683100800', trim($view->render()));
 
+        $view = $this->buildTemplateView($this->getTemplateSource());
         $view->assign('file', $extbaseFileReference);
-        self::assertSame(
-            '1683100800',
-            trim($view->render()),
-        );
+        self::assertSame('1683100800', trim($view->render()));
     }
 
     /**
@@ -114,26 +113,13 @@ class VideoCreationDateViewHelperTest extends FunctionalTestCase
         $extbaseFileReference = new ExtbaseFileReference();
         $extbaseFileReference->setOriginalResource($coreFileReference);
 
-        $view = GeneralUtility::makeInstance(StandaloneView::class);
-        $view->setTemplateSource(implode(' ', [
-            '<html lang="en" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"',
-            'xmlns:jw="http://typo3.org/ns/JWeiland/VideoShariff/ViewHelpers"',
-            'data-namespace-typo3-fluid="true">',
-            '{jw:videoCreationDate(fileReference: \'{file}\')}',
-            '</html>',
-        ]));
-
+        $view = $this->buildTemplateView($this->getTemplateSource());
         $view->assign('file', $coreFileReference);
-        self::assertSame(
-            '1682928000',
-            trim($view->render()),
-        );
+        self::assertSame('1682928000', trim($view->render()));
 
+        $view = $this->buildTemplateView($this->getTemplateSource());
         $view->assign('file', $extbaseFileReference);
-        self::assertSame(
-            '1682928000',
-            trim($view->render()),
-        );
+        self::assertSame('1682928000', trim($view->render()));
     }
 
     /**
@@ -164,25 +150,12 @@ class VideoCreationDateViewHelperTest extends FunctionalTestCase
         $extbaseFileReference = new ExtbaseFileReference();
         $extbaseFileReference->setOriginalResource($coreFileReference);
 
-        $view = GeneralUtility::makeInstance(StandaloneView::class);
-        $view->setTemplateSource(implode(' ', [
-            '<html lang="en" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"',
-            'xmlns:jw="http://typo3.org/ns/JWeiland/VideoShariff/ViewHelpers"',
-            'data-namespace-typo3-fluid="true">',
-            '{jw:videoCreationDate(fileReference: \'{file}\')}',
-            '</html>',
-        ]));
-
+        $view = $this->buildTemplateView($this->getTemplateSource());
         $view->assign('file', $coreFileReference);
-        self::assertSame(
-            '1683014400',
-            trim($view->render()),
-        );
+        self::assertSame('1683014400', trim($view->render()));
 
+        $view = $this->buildTemplateView($this->getTemplateSource());
         $view->assign('file', $extbaseFileReference);
-        self::assertSame(
-            '1683014400',
-            trim($view->render()),
-        );
+        self::assertSame('1683014400', trim($view->render()));
     }
 }
