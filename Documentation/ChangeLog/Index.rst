@@ -7,6 +7,19 @@
 ChangeLog
 =========
 
+Version 5.0.0
+=============
+
+*   [TASK] Compatibility fixes for TYPO3 14.
+*   [TASK] Replaced deprecated ``renderStatic()`` with instance ``render()`` method in all ViewHelpers.
+*   [TASK] Constructor injection of ``OnlineMediaHelperRegistry`` in ``VideoPreviewImageViewHelper`` and ``VideoPublicUrlViewHelper``.
+*   [TASK] Replaced deprecated ``StandaloneView`` with ``RenderingContextFactory`` + ``TemplateView`` in functional tests.
+*   [TASK] Updated ``GetOnlineMediaHelperTrait`` — deprecated in favour of direct constructor injection.
+*   [TASK] Bumped ``phpstan/phpstan`` requirement to ``^2.0``.
+*   [TASK] Bumped ``typo3/coding-standards`` requirement to ``^0.9``.
+*   [TASK] Updated PHPUnit XML schema reference to version 11.5.
+*   [TASK] Added PHP 8.4 to CI matrix.
+
 Version 4.0.0
 =============
 
@@ -27,4 +40,3 @@ Version 3.1.0
 *   [TASK] Remove TypoScript access from VH
 *   [BUGFIX] Prevent duplicate EXT: parsing
 *   [DOCS] Please read update instructions before updating. Maybe you have to update your templates!!!
-
