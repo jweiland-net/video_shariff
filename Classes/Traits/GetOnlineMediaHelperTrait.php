@@ -14,19 +14,19 @@ namespace JWeiland\VideoShariff\Traits;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperInterface;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * @deprecated This trait is no longer used. Inject OnlineMediaHelperRegistry directly via constructor injection.
+ *             Will be removed in a future version.
+ */
 trait GetOnlineMediaHelperTrait
 {
-    protected static function getOnlineMediaHelper(File $file): ?OnlineMediaHelperInterface
-    {
-        $onlineMediaHelper = self::getOnlineMediaHelperRegistry()->getOnlineMediaHelper($file);
+    protected function getOnlineMediaHelper(
+        File $file,
+        OnlineMediaHelperRegistry $onlineMediaHelperRegistry,
+    ): ?OnlineMediaHelperInterface {
+        $onlineMediaHelper = $onlineMediaHelperRegistry->getOnlineMediaHelper($file);
 
         return $onlineMediaHelper ?: null;
-    }
-
-    protected static function getOnlineMediaHelperRegistry(): OnlineMediaHelperRegistry
-    {
-        return GeneralUtility::makeInstance(OnlineMediaHelperRegistry::class);
     }
 }
