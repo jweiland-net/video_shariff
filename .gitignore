@@ -35,7 +35,6 @@ nbproject
 
 # Ignore composer stuff
 /composer.lock
-var/*
 bin/*
 vendor/*
 .build
@@ -46,8 +45,3 @@ composer.lock
 /.Build
 /composer.json.orig
 /composer.json.testing
-
-# Ignore Node tooling (frontend build pipeline)
-# Note: package-lock.json is intentionally committed so `npm ci` in CI is reproducible.
-/node_modules/
-npm-debug.log*

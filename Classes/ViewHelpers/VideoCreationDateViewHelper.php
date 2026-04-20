@@ -14,6 +14,7 @@ namespace JWeiland\VideoShariff\ViewHelpers;
 use JWeiland\VideoShariff\Traits\GetCoreFileReferenceTrait;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference as ExtbaseFileReference;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
@@ -37,14 +38,17 @@ class VideoCreationDateViewHelper extends AbstractViewHelper
      *
      * @throws \UnexpectedValueException
      */
-    public function render(): int
-    {
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext,
+    ): int {
         // Early return, if object is not allowed
         if (
-            $this->arguments['fileReference'] instanceof FileReference
-            || $this->arguments['fileReference'] instanceof ExtbaseFileReference
+            $arguments['fileReference'] instanceof FileReference
+            || $arguments['fileReference'] instanceof ExtbaseFileReference
         ) {
-            $fileReference = self::getCoreFileReference($this->arguments['fileReference']);
+            $fileReference = self::getCoreFileReference($arguments['fileReference']);
         } else {
             return 0;
         }

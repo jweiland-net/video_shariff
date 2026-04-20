@@ -4,8 +4,3 @@
 /.editorconfig export-ignore
 /.gitattributes export-ignore
 /.gitignore export-ignore
-/package.json export-ignore
-/package-lock.json export-ignore
-
-# Keep GitHub's diff UI + language stats focused on hand-written source
-Resources/Public/JavaScript/VideoShariff.min.js linguist-generated=true
