@@ -27,7 +27,7 @@ return (new Config())
     ->setFinder(
         (new Finder())
             ->in(__DIR__ . '/../../')
-            ->exclude(['.Build', 'var', 'vendor'])
+            ->ignoreVCSIgnored(true)
     )
     ->setRiskyAllowed(true)
     ->setRules([
