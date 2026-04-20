@@ -2,11 +2,14 @@
       xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       xmlns:jw="http://typo3.org/ns/JWeiland/VideoShariff/ViewHelpers"
       data-namespace-typo3-fluid="true">
-
+<f:asset.css identifier="video_shariff-css" href="EXT:video_shariff/Resources/Public/Css/VideoShariff.min.css" />
+<f:asset.script identifier="video_shariff-js" src="EXT:video_shariff/Resources/Public/JavaScript/VideoShariff.min.js" />
 <f:variable name="previewImage" value="{jw:videoPreviewImage(fileReference: file, fallbackThumbnailFile: settings.video_shariff.defaultThumbnail)}"/>
-<f:variable name="publicUrl" value="{jw:videoPublicUrl(fileReference: file)}" />
-<f:variable name="creationDate" value="{jw:videoCreationDate(fileReference: file)}" />
-<f:variable name="playerHtml"><f:render partial="Media/Rendering/Video" arguments="{file: file, dimensions: dimensions, settings: settings}"/></f:variable>
+<f:variable name="publicUrl" value="{jw:videoPublicUrl(fileReference: file)}"/>
+<f:variable name="creationDate" value="{jw:videoCreationDate(fileReference: file)}"/>
+<f:variable name="playerHtml">
+    <f:render partial="Media/Rendering/Video" arguments="{file: file, dimensions: dimensions, settings: settings}"/>
+</f:variable>
 
 <figure class="video" itemprop="video" itemscope itemtype="https://schema.org/VideoObject">
     <div class="video-embed">
@@ -31,6 +34,7 @@
             </f:else>
         </f:if>
     </div>
+
     <f:if condition="{file.description}">
         <f:then>
             <figcaption class="video-caption" itemprop="description">
@@ -40,42 +44,46 @@
         <f:else>
             <f:if condition="{file.properties.caption}">
                 <f:then>
-                    <meta itemprop="description" content="{file.properties.caption}" />
+                    <meta itemprop="description" content="{file.properties.caption}"/>
                 </f:then>
                 <f:else>
                     <f:if condition="{file.title}">
                         <f:then>
-                            <meta itemprop="description" content="{file.title}" />
+                            <meta itemprop="description" content="{file.title}"/>
                         </f:then>
                         <f:else>
-                            <meta itemprop="description" content="{file.name}" />
+                            <meta itemprop="description" content="{file.name}"/>
                         </f:else>
                     </f:if>
                 </f:else>
             </f:if>
         </f:else>
     </f:if>
+
     <f:if condition="{file.title}">
         <f:then>
-            <meta itemprop="name" content="{file.title}" />
+            <meta itemprop="name" content="{file.title}"/>
         </f:then>
         <f:else>
-            <meta itemprop="name" content="{file.name}" />
+            <meta itemprop="name" content="{file.name}"/>
         </f:else>
     </f:if>
+
     <f:if condition="{publicUrl}">
         <f:then>
-            <meta itemprop="embedUrl" content="{publicUrl}" />
+            <meta itemprop="embedUrl" content="{publicUrl}"/>
         </f:then>
         <f:else>
-            <meta itemprop="contentUrl" content="{file.publicUrl}" />
+            <meta itemprop="contentUrl" content="{file.publicUrl}"/>
         </f:else>
     </f:if>
+
     <f:if condition="{creationDate}">
-        <meta itemprop="uploadDate" content="{creationDate -> f:format.date(format: 'c')}" />
+        <meta itemprop="uploadDate" content="{creationDate -> f:format.date(format: 'c')}"/>
     </f:if>
+
     <f:if condition="{file.properties.duration}">
-        <meta itemprop="duration" content="{file.properties.duration -> jw:format.secondsToISO8601()}" />
+        <meta itemprop="duration" content="{file.properties.duration -> jw:format.secondsToISO8601()}"/>
     </f:if>
 </figure>
 </html>
