@@ -37,7 +37,42 @@ Download and install `video_shariff` with the extension manager module.
 1) Include the static TypoScript of the extension.
 2) Clear Cache.
 
-## 3 Support
+## 3 Development
+
+### 3.1 JavaScript build
+
+The frontend script that swaps the preview image for the real player lives at
+`Resources/Public/JavaScript/VideoShariff.js`. The minified bundle that
+TypoScript loads — `Resources/Public/JavaScript/VideoShariff.min.js` — is
+generated from that source with [esbuild](https://esbuild.github.io/) and
+**committed to the repository** so that TER installs and Composer-based
+projects can use the extension without a Node.js toolchain.
+
+Requirements: Node.js &ge; 20 (see `engines` in `package.json`).
+
+Install dev dependencies once:
+
+```bash
+npm install
+```
+
+Available scripts:
+
+| Script              | What it does                                                                 |
+| ------------------- | ---------------------------------------------------------------------------- |
+| `npm run build:js`  | Bundle + minify `VideoShariff.js` into `VideoShariff.min.js` (ES2020 target). |
+| `npm run watch:js`  | Same as `build:js`, re-running on every source change.                       |
+| `npm run verify:js` | Rebuild and fail if the committed `VideoShariff.min.js` is out of date.      |
+
+Whenever you edit `VideoShariff.js`, rebuild and commit the regenerated
+`VideoShariff.min.js` in the same commit. CI runs `npm run verify:js` on every
+pull request, so a forgotten rebuild will fail the build.
+
+The minified bundle is marked `linguist-generated=true` in `.gitattributes`,
+which collapses it in GitHub's diff UI and excludes it from repository
+language statistics.
+
+## 4 Support
 
 Free Support is available via [GitHub Issue Tracker](https://github.com/jweiland-net/video_shariff/issues).
 

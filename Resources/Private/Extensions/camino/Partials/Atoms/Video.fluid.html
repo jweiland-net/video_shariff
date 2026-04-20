@@ -1,0 +1,46 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:jw="http://typo3.org/ns/JWeiland/VideoShariff/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:asset.css identifier="video_shariff-css" href="EXT:video_shariff/Resources/Public/Css/VideoShariff.min.css" />
+<f:asset.script identifier="video_shariff-js" src="EXT:video_shariff/Resources/Public/JavaScript/VideoShariff.min.js" />
+
+<f:if condition="{video.properties.width} && {video.properties.height}">
+    <f:variable name="aspect-ratio" value="{video.properties.width}/{video.properties.height}"/>
+</f:if>
+
+<f:variable name="playerHtml">
+    <f:media
+        file="{video}"
+        width="{video.properties.width}"
+        height="{video.properties.height}"
+        style="aspect-ratio: {aspect-ratio}"
+        class="video"
+    />
+</f:variable>
+
+<f:variable name="previewImage" value="{jw:videoPreviewImage(fileReference: video, fallbackThumbnailFile: settings.video_shariff.defaultThumbnail)}"/>
+
+<f:if condition="{previewImage}">
+    <f:then>
+        <a href="#play" class="video-shariff-play" data-video="{playerHtml -> f:format.json()}">
+            <f:image src="{previewImage}"
+                     alt="{video.title}"
+                     width="{video.properties.width}"
+                     height="{video.properties.height}"
+                     style="aspect-ratio: {aspect-ratio}" />
+            <span class="video-shariff-preview-overlay"></span>
+            <div class="video-shariff-preview">
+                <span class="video-shariff-preview-icon"></span>
+                <span class="video-shariff-preview-text"><f:translate key="preview.text" extensionName="videoShariff"/></span>
+            </div>
+        </a>
+    </f:then>
+    <f:else>
+        {playerHtml -> f:format.raw()}
+    </f:else>
+</f:if>
+
+</html>
