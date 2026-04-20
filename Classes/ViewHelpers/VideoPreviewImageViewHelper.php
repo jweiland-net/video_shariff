@@ -24,7 +24,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  * ViewHelper to get preview image for video. If video is unavailable or private
  * return a fallback image configured in lib.video_shariff.defaultThumbnail
  */
-class VideoPreviewImageViewHelper extends AbstractViewHelper
+final class VideoPreviewImageViewHelper extends AbstractViewHelper
 {
     use GetCoreFileReferenceTrait;
 
