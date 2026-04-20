@@ -4,7 +4,7 @@
 [![Latest Stable Version][extension-build-shield]][extension-ter-url]
 [![Total Downloads][extension-downloads-badge]][extension-packagist-url]
 [![Monthly Downloads][extension-monthly-downloads]][extension-packagist-url]
-[![TYPO3 12.4][TYPO3-shield]][TYPO3-12-url]
+[![TYPO3 14.2][TYPO3-shield]][TYPO3-14-url]
 
 ![Build Status][extension-ci-shield]
 
@@ -92,6 +92,6 @@ For commercial support, please contact us at [support@jweiland.net](support@jwei
 
 [packagist-logo-stable]: https://img.shields.io/badge/--grey.svg?style=for-the-badge&logo=packagist&logoColor=white
 
-[TYPO3-12-url]: https://get.typo3.org/version/12
+[TYPO3-14-url]: https://get.typo3.org/version/14
 
-[TYPO3-shield]: https://img.shields.io/badge/TYPO3-12.4-green.svg?style=for-the-badge&logo=typo3
+[TYPO3-shield]: https://img.shields.io/badge/TYPO3-14.2-green.svg?style=for-the-badge&logo=typo3
