@@ -33,7 +33,7 @@ final class SecondsToISO8601ViewHelper extends AbstractViewHelper
         return $this->formatSecondsIntoISO8601($seconds);
     }
 
-    protected function formatSecondsIntoISO8601(int $seconds): string
+    private function formatSecondsIntoISO8601(int $seconds): string
     {
         $days = floor($seconds / (3600 * 24));
         $hours = floor(($seconds % (3600 * 24)) / 3600);
