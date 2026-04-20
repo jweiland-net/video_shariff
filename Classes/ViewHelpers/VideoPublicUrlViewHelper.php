@@ -46,17 +46,14 @@ final class VideoPublicUrlViewHelper extends AbstractViewHelper
     public function render(): string
     {
         $publicUrl = '';
-
-        // Early return, if object is not allowed
         if (
-            $this->arguments['fileReference'] instanceof FileReference
-            || $this->arguments['fileReference'] instanceof ExtbaseFileReference
+            !($this->arguments['fileReference'] instanceof FileReference)
+            && !($this->arguments['fileReference'] instanceof ExtbaseFileReference)
         ) {
-            $fileReference = self::getCoreFileReference($this->arguments['fileReference']);
-        } else {
             return $publicUrl;
         }
 
+        $fileReference = self::getCoreFileReference($this->arguments['fileReference']);
         $file = $fileReference->getOriginalFile();
         $helper = $this->onlineMediaHelperRegistry->getOnlineMediaHelper($file);
         if ($helper instanceof OnlineMediaHelperInterface) {
