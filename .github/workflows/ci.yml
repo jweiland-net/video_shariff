@@ -44,3 +44,23 @@ jobs:
 
       - name: 'Execute functional tests (MariaDB)'
         run: Build/Scripts/runTests.sh -p ${{ matrix.php }} -d mariadb -s functional
+
+  frontend:
+    name: 'Frontend build'
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v5
+
+      - name: 'Setup Node.js'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 'Install npm dependencies'
+        run: npm ci
+
+      - name: 'Verify VideoShariff.min.js is up to date'
+        run: npm run verify:js
