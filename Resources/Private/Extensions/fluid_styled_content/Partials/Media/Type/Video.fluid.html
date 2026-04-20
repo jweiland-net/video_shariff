@@ -2,8 +2,8 @@
       xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       xmlns:jw="http://typo3.org/ns/JWeiland/VideoShariff/ViewHelpers"
       data-namespace-typo3-fluid="true">
-<f:asset.css identifier="video_shariff" href="EXT:video_shariff/Resources/Public/Css/VideoShariff.min.css" />
-<f:asset.script identifier="video_shariff" href="EXT:video_shariff/Resources/Public/JavaScript/VideoShariff.min.js" />
+<f:asset.css identifier="video_shariff-css" href="EXT:video_shariff/Resources/Public/Css/VideoShariff.min.css" />
+<f:asset.script identifier="video_shariff-js" src="EXT:video_shariff/Resources/Public/JavaScript/VideoShariff.min.js" />
 <f:variable name="previewImage" value="{jw:videoPreviewImage(fileReference: file, fallbackThumbnailFile: settings.video_shariff.defaultThumbnail)}"/>
 <f:variable name="publicUrl" value="{jw:videoPublicUrl(fileReference: file)}"/>
 <f:variable name="creationDate" value="{jw:videoCreationDate(fileReference: file)}"/>
