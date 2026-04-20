@@ -11,29 +11,33 @@ declare(strict_types=1);
 
 namespace JWeiland\VideoShariff\ViewHelpers\Format;
 
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  * ViewHelper to convert seconds into ISO 8601 date
  */
-final class SecondsToISO8601ViewHelper extends AbstractViewHelper
+class SecondsToISO8601ViewHelper extends AbstractViewHelper
 {
     /**
      * Convert seconds into ISO 8601 date
      *
      * @throws \UnexpectedValueException
      */
-    public function render(): string
-    {
-        $seconds = (int)$this->renderChildren();
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext,
+    ): string {
+        $seconds = (int)$renderChildrenClosure();
         if ($seconds === 0) {
             return 'P0S';
         }
 
-        return $this->formatSecondsIntoISO8601($seconds);
+        return self::formatSecondsIntoISO8601($seconds);
     }
 
-    private function formatSecondsIntoISO8601(int $seconds): string
+    protected static function formatSecondsIntoISO8601(int $seconds): string
     {
         $days = floor($seconds / (3600 * 24));
         $hours = floor(($seconds % (3600 * 24)) / 3600);

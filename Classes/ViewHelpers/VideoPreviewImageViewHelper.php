@@ -12,27 +12,25 @@ declare(strict_types=1);
 namespace JWeiland\VideoShariff\ViewHelpers;
 
 use JWeiland\VideoShariff\Traits\GetCoreFileReferenceTrait;
+use JWeiland\VideoShariff\Traits\GetOnlineMediaHelperTrait;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperInterface;
-use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference as ExtbaseFileReference;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  * ViewHelper to get preview image for video. If video is unavailable or private
  * return a fallback image configured in lib.video_shariff.defaultThumbnail
  */
-final class VideoPreviewImageViewHelper extends AbstractViewHelper
+class VideoPreviewImageViewHelper extends AbstractViewHelper
 {
     use GetCoreFileReferenceTrait;
+    use GetOnlineMediaHelperTrait;
 
     private const FALLBACK_THUMBNAIL_FILE = 'EXT:video_shariff/Resources/Public/Images/DefaultThumbnail.png';
-
-    public function __construct(
-        private readonly OnlineMediaHelperRegistry $onlineMediaHelperRegistry,
-    ) {}
 
     public function initializeArguments(): void
     {
@@ -44,7 +42,7 @@ final class VideoPreviewImageViewHelper extends AbstractViewHelper
         $this->registerArgument(
             'fallbackThumbnailFile',
             'string',
-            'This file will be used as fallback if video thumbnail could not be retrieved because of unavailable or private video',
+            'This file will be used as fallback if video thubnail could not be retrieved because of unavailable or private video',
             false,
             self::FALLBACK_THUMBNAIL_FILE,
         );
@@ -55,19 +53,26 @@ final class VideoPreviewImageViewHelper extends AbstractViewHelper
      *
      * @throws \UnexpectedValueException
      */
-    public function render(): string
-    {
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext,
+    ): string {
         $publicFile = '';
+
+        // Early return, if object is not allowed
         if (
-            !($this->arguments['fileReference'] instanceof FileReference)
-            && !($this->arguments['fileReference'] instanceof ExtbaseFileReference)
+            $arguments['fileReference'] instanceof FileReference
+            || $arguments['fileReference'] instanceof ExtbaseFileReference
         ) {
+            $fileReference = self::getCoreFileReference($arguments['fileReference']);
+        } else {
             return $publicFile;
         }
 
-        $fileReference = self::getCoreFileReference($this->arguments['fileReference']);
         $file = $fileReference->getOriginalFile();
-        $helper = $this->onlineMediaHelperRegistry->getOnlineMediaHelper($file);
+
+        $helper = self::getOnlineMediaHelper($file);
         if ($helper instanceof OnlineMediaHelperInterface) {
             $privateFile = $helper->getPreviewImage($file);
             $publicDirectory = Environment::getPublicPath() . '/typo3temp/assets/tx_videoshariff/';
@@ -83,7 +88,7 @@ final class VideoPreviewImageViewHelper extends AbstractViewHelper
                 if (is_file($privateFile)) {
                     copy($privateFile, $publicFile);
                 } else {
-                    $publicFile = $this->arguments['fallbackThumbnailFile'] ?? self::FALLBACK_THUMBNAIL_FILE;
+                    $publicFile = $arguments['fallbackThumbnailFile'] ?? self::FALLBACK_THUMBNAIL_FILE;
                 }
             }
         }
