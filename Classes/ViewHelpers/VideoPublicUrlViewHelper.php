@@ -21,7 +21,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 /**
  * Class VideoPublicUrlViewHelper
  */
-class VideoPublicUrlViewHelper extends AbstractViewHelper
+final class VideoPublicUrlViewHelper extends AbstractViewHelper
 {
     use GetCoreFileReferenceTrait;
 
