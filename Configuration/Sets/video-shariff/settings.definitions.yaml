@@ -1,0 +1,6 @@
+jweiland:
+  videoShariff:
+    defaultThumbnail:
+      type: string
+      label: 'Default thumbnail when no video specific thumbnail can be fetched'
+      default: 'EXT:video_shariff/Resources/Public/Images/DefaultThumbnail.png'
