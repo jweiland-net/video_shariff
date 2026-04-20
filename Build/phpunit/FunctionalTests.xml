@@ -9,7 +9,6 @@
          colors="true"
          failOnRisky="true"
          failOnWarning="true"
-         displayDetailsOnTestsThatTriggerDeprecations="true"
 >
     <testsuites>
         <testsuite name="Functional tests">
