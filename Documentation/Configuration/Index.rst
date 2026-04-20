@@ -10,4 +10,5 @@ Configuration
 ..  toctree::
     :maxdepth: 2
 
+    SiteSets/Index
     TypoScript/Index

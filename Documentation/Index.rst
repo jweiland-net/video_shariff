@@ -18,6 +18,7 @@ Video Shariff
 
 :Author:
     Stefan Froemken
+    Hoja Mustaffa Abdul Latheef
 
 :License:
     This document is published under the
