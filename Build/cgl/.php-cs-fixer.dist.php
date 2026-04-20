@@ -27,6 +27,7 @@ return (new Config())
     ->setFinder(
         (new Finder())
             ->in(__DIR__ . '/../../')
+            ->exclude(['var',])
             ->ignoreVCSIgnored(true)
     )
     ->setRiskyAllowed(true)
