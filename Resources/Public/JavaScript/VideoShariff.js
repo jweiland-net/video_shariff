@@ -17,25 +17,31 @@
    * @param {MouseEvent} event
    */
   const handlePreviewClick = (event) => {
-    // 1. Check if the click happened inside our target element FIRST
+    // 1. Check if the click happened inside our target element
     const previewLink = event.target.closest(PLAY_SELECTOR);
+
     if (!previewLink) {
       return; // Exit immediately if they clicked somewhere else
     }
 
-    // 2. NOW prevent the default action (e.g., following an href)
+    // DEBUG: If you see this alert, the click was successfully detected!
+    // alert('Video preview clicked!');
+
+    // 2. Prevent the default action (e.g., following an href)
     event.preventDefault();
 
     const payload = previewLink.dataset.video;
+
     if (typeof payload !== 'string' || payload === '') {
+      console.warn('[video_shariff] data-video attribute is empty or missing.');
       return;
     }
 
     try {
       previewLink.outerHTML = JSON.parse(payload);
     } catch (error) {
-      // Intentionally swallow: a malformed data-video attribute should
-      // never break the surrounding page.
+      // If the click works but the video doesn't appear, this error will
+      // show up in your browser's Developer Console (F12).
       console.error('[video_shariff] Unable to decode data-video payload', error);
     }
   };
