@@ -17,7 +17,7 @@ use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
 
 /**
  * @deprecated This trait is no longer used. Inject OnlineMediaHelperRegistry directly via constructor injection.
- *             Will be removed in a future version.
+ * Will be removed in a future version.
  */
 trait GetOnlineMediaHelperTrait
 {
