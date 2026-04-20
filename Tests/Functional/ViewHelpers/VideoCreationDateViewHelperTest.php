@@ -55,11 +55,11 @@ class VideoCreationDateViewHelperTest extends FunctionalTestCase
     {
         $file = $this->createMock(File::class);
         $file
-            ->expects(self::atLeastOnce())
+            ->expects($this->atLeastOnce())
             ->method('getUid')
             ->willReturn(1);
         $file
-            ->expects(self::atLeastOnce())
+            ->expects($this->atLeastOnce())
             ->method('getProperty')
             ->willReturnMap([
                 ['content_creation_date', 1683100800],
@@ -69,7 +69,7 @@ class VideoCreationDateViewHelperTest extends FunctionalTestCase
 
         $coreFileReference = $this->createMock(FileReference::class);
         $coreFileReference
-            ->expects(self::atLeastOnce())
+            ->expects($this->atLeastOnce())
             ->method('getOriginalFile')
             ->willReturn($file);
 
@@ -92,11 +92,11 @@ class VideoCreationDateViewHelperTest extends FunctionalTestCase
     {
         $file = $this->createMock(File::class);
         $file
-            ->expects(self::atLeastOnce())
+            ->expects($this->atLeastOnce())
             ->method('getUid')
             ->willReturn(1);
         $file
-            ->expects(self::atLeastOnce())
+            ->expects($this->atLeastOnce())
             ->method('getProperty')
             ->willReturnMap([
                 ['content_creation_date', 0],
@@ -106,7 +106,7 @@ class VideoCreationDateViewHelperTest extends FunctionalTestCase
 
         $coreFileReference = $this->createMock(FileReference::class);
         $coreFileReference
-            ->expects(self::atLeastOnce())
+            ->expects($this->atLeastOnce())
             ->method('getOriginalFile')
             ->willReturn($file);
 
@@ -129,11 +129,11 @@ class VideoCreationDateViewHelperTest extends FunctionalTestCase
     {
         $file = $this->createMock(File::class);
         $file
-            ->expects(self::atLeastOnce())
+            ->expects($this->atLeastOnce())
             ->method('getUid')
             ->willReturn(1);
         $file
-            ->expects(self::atLeastOnce())
+            ->expects($this->atLeastOnce())
             ->method('getProperty')
             ->willReturnMap([
                 ['content_creation_date', 0],
@@ -143,7 +143,7 @@ class VideoCreationDateViewHelperTest extends FunctionalTestCase
 
         $coreFileReference = $this->createMock(FileReference::class);
         $coreFileReference
-            ->expects(self::atLeastOnce())
+            ->expects($this->atLeastOnce())
             ->method('getOriginalFile')
             ->willReturn($file);
 
