@@ -31,7 +31,7 @@ final class VideoPublicUrlViewHelperTest extends TestCase
     public function renderReturnsEmptyStringWhenFileReferenceIsNotAFileReferenceObject(): void
     {
         $registry = $this->createMock(OnlineMediaHelperRegistry::class);
-        $registry->expects(self::never())->method('getOnlineMediaHelper');
+        $registry->expects($this->never())->method('getOnlineMediaHelper');
 
         $viewHelper = new VideoPublicUrlViewHelper($registry);
         $viewHelper->setArguments(['fileReference' => new \stdClass()]);
@@ -43,7 +43,7 @@ final class VideoPublicUrlViewHelperTest extends TestCase
     public function renderReturnsEmptyStringWhenFileReferenceIsNull(): void
     {
         $registry = $this->createMock(OnlineMediaHelperRegistry::class);
-        $registry->expects(self::never())->method('getOnlineMediaHelper');
+        $registry->expects($this->never())->method('getOnlineMediaHelper');
 
         $viewHelper = new VideoPublicUrlViewHelper($registry);
         $viewHelper->setArguments(['fileReference' => null]);

@@ -65,7 +65,7 @@ final class VideoPreviewImageViewHelperTest extends TestCase
     public function renderReturnsEmptyStringWhenFileReferenceIsNotAFileReferenceObject(): void
     {
         $registry = $this->createMock(OnlineMediaHelperRegistry::class);
-        $registry->expects(self::never())->method('getOnlineMediaHelper');
+        $registry->expects($this->never())->method('getOnlineMediaHelper');
 
         $viewHelper = new VideoPreviewImageViewHelper($registry);
         $viewHelper->setArguments([
