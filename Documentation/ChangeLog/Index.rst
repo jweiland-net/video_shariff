@@ -10,6 +10,11 @@ ChangeLog
 Version 5.0.0
 =============
 
+*   [FEATURE] Added Site Set setting ``videoShariff.defaultThumbnail`` (category
+    ``videoShariff``) so the fallback thumbnail used when no provider-specific
+    preview image can be fetched is now configurable per-site from the backend
+    Settings editor or from a site package's :file:`config.yaml`, replacing the
+    previous hard-coded ``lib.video_shariff.defaultThumbnail`` constant lookup.
 *   [TASK] Compatibility fixes for TYPO3 14.
 *   [TASK] Replaced deprecated ``renderStatic()`` with instance ``render()`` method in all ViewHelpers.
 *   [TASK] Constructor injection of ``OnlineMediaHelperRegistry`` in ``VideoPreviewImageViewHelper`` and ``VideoPublicUrlViewHelper``.

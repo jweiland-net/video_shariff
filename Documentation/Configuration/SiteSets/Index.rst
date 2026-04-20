@@ -93,6 +93,47 @@ If you manage your site configuration in version control, you can add
 This is equivalent to selecting the Site Set in the backend and is the
 preferred approach for site packages that are deployed via Composer.
 
+Available settings
+==================
+
+The Site Set exposes its configuration through
+:file:`Configuration/Sets/video-shariff/settings.definitions.yaml`. The
+settings are grouped under the ``videoShariff`` category and can be
+edited from the TYPO3 backend via :guilabel:`Site Management` →
+:guilabel:`Settings`, or overridden per-site in the site's
+:file:`config.yaml` / :file:`settings.yaml`.
+
+..  confval:: videoShariff.defaultThumbnail
+
+    :type: string
+    :Default: ``EXT:video_shariff/Resources/Public/Images/DefaultThumbnail.png``
+
+    Fallback thumbnail that is rendered in the Shariff preview overlay
+    whenever no video-specific thumbnail can be fetched from the provider
+    (for example when YouTube or Vimeo does not return a preview image,
+    or when the upstream request fails). The value is an
+    :ref:`EXT: path <t3coreapi:typoscript-syntax-file-includes>` resolved
+    at render time by :php:`VideoPreviewImageViewHelper` via its
+    ``fallbackThumbnailFile`` argument.
+
+    The setting is consumed by the TypoScript constant
+    ``lib.contentElement.settings.video_shariff.defaultThumbnail`` for
+    ``fluid_styled_content`` and by
+    ``plugin.tx_news.settings.video_shariff.defaultThumbnail`` for the
+    ``news`` partial, both wired up in
+    :file:`Configuration/TypoScript/setup.typoscript`.
+
+    **Overriding it**
+
+    Either adjust the value in the backend Settings editor, or set it in
+    your site package's :file:`config.yaml`:
+
+    ..  code-block:: yaml
+
+        settings:
+          videoShariff:
+            defaultThumbnail: 'EXT:my_sitepackage/Resources/Public/Images/VideoFallback.jpg'
+
 Relationship to the legacy TypoScript include
 =============================================
 
