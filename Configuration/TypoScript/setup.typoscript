@@ -3,7 +3,7 @@ lib.contentElement {
     1526542481 = EXT:video_shariff/Resources/Private/Extensions/fluid_styled_content/Partials/
     1526542482 = EXT:video_shariff/Resources/Private/Extensions/camino/Partials/
   }
-  settings.video_shariff.defaultThumbnail = {$jweiland.videoShariff.defaultThumbnail}
+  settings.video_shariff.defaultThumbnail = {$videoShariff.defaultThumbnail}
 }
 
 plugin.tx_news {
@@ -12,5 +12,5 @@ plugin.tx_news {
       1526542481 = EXT:video_shariff/Resources/Private/Extensions/news/Partials/
     }
   }
-  settings.video_shariff.defaultThumbnail = {$jweiland.videoShariff.defaultThumbnail}
+  settings.video_shariff.defaultThumbnail = {$videoShariff.defaultThumbnail}
 }
