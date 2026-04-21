@@ -94,4 +94,4 @@ For commercial support, please contact us at [support@jweiland.net](support@jwei
 
 [TYPO3-14-url]: https://get.typo3.org/version/14
 
-[TYPO3-shield]: https://img.shields.io/badge/TYPO3-14.2-green.svg?style=for-the-badge&logo=typo3
+[TYPO3-shield]: https://img.shields.io/badge/TYPO3-14.3-green.svg?style=for-the-badge&logo=typo3
