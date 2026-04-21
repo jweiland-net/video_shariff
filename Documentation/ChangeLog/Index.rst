@@ -7,6 +7,15 @@
 ChangeLog
 =========
 
+Version 5.1.0
+=============
+
+*   [TASK] Update .editorconfig to refine rules for file types
+*   [TASK] Update composer.json for TYPO3 14.3 compatibility and bump version to 5.1.0
+*   [TASK] Update CGL config for TYPO3 14.3 compatibility adjustments
+*   [TASK] Migrate XLIFF files to version 2.0 format for VideoShariff
+*   [TASK] Restructure TypoScript defaultThumbnail configuration for improved clarity
+
 Version 5.0.0
 =============
 
