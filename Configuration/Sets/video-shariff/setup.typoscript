@@ -1,2 +1,1 @@
-# Include TypoScript
 @import 'EXT:video_shariff/Configuration/TypoScript/setup.typoscript'

@@ -5,11 +5,11 @@ declare(strict_types=1);
 /**
  * This file represents the configuration for Code Sniffing PER-related
  * automatic checks of coding guidelines.
- * This configuration is originally provided by the official TYPO3 14.2.0 Git repository.
+ * This configuration is originally provided by the official TYPO3 14.3.0 Git repository.
  * It has been copied into the extension folder and adapted where necessary
- * to be compatible with this project (PHP 8.3, TYPO3 14.2).
+ * to be compatible with this project (PHP 8.3, TYPO3 14.3).
  * Run checks with:
- * ddev exec "vendor/bin/php-cs-fixer fix --config=Build/php-cs-fixer/config.php --dry-run || true"
+ * Build/Scripts/runTests.sh -p 8.3 -s cgl
  */
 if (PHP_SAPI !== 'cli') {
     die('This script supports command line usage only. Please check your command.');
