@@ -1,6 +1,6 @@
 {
 	"name": "jweiland/video-shariff",
-	"version": "5.0.0",
+	"version": "5.1.0",
 	"description": "This extension provides more privacy when embedding videos in frontend.",
 	"license": "GPL-2.0-or-later",
 	"type": "typo3-cms-extension",
@@ -32,7 +32,7 @@
 	},
 	"require": {
 		"php": "^8.2",
-		"typo3/cms-core": "^14.0"
+		"typo3/cms-core": "^14.3"
 	},
 	"require-dev": {
 		"ergebnis/composer-normalize": "^2.44",
