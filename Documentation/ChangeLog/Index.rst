@@ -7,6 +7,11 @@
 ChangeLog
 =========
 
+Version 5.1.1
+=============
+
+*   [BUGFIX] Update XLIFF files
+
 Version 5.1.0
 =============
 
