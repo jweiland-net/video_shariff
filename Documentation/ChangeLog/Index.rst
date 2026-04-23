@@ -7,6 +7,11 @@
 ChangeLog
 =========
 
+Version 5.1.2
+=============
+
+*   [BUGFIX] Fixed arguments missing in translation files
+
 Version 5.1.1
 =============
 
