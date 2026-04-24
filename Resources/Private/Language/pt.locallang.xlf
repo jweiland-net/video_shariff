@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
-  <file id="f1" target-language="pt-PT">
-    <unit id="preview.text">
-      <segment state="initial">
-        <source>We take care about your privacy. Only when you click here, data from third party servers will be
-          loaded.
-        </source>
-      </segment>
-    </unit>
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="pt-PT" datatype="plaintext" original="f1">
+    <body>
+      <trans-unit id="preview.text">
+        <source>We take care about your privacy. Only when you click here, data from third party servers will be loaded.</source>
+        <target state="needs-translation">We take care about your privacy. Only when you click here, data from third party servers will be loaded.</target>
+      </trans-unit>
+    </body>
   </file>
 </xliff>
