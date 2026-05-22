@@ -13,10 +13,5 @@ plugin.tx_news {
   }
 }
 
-[{$videoShariff.defaultThumbnail}]
-  lib.contentElement.settings.video_shariff.defaultThumbnail = {$videoShariff.defaultThumbnail}
-  plugin.tx_news.settings.video_shariff.defaultThumbnail = {$videoShariff.defaultThumbnail}
-[else]
-  lib.contentElement.settings.video_shariff.defaultThumbnail = 'EXT:video_shariff/Resources/Public/Images/DefaultThumbnail.png'
-  plugin.tx_news.settings.video_shariff.defaultThumbnail = 'EXT:video_shariff/Resources/Public/Images/DefaultThumbnail.png'
-[END]
+lib.contentElement.settings.video_shariff.defaultThumbnail = {$lib.video_shariff.defaultThumbnail ?? $videoShariff.defaultThumbnail}
+plugin.tx_news.settings.video_shariff.defaultThumbnail = {$lib.video_shariff.defaultThumbnail ?? $videoShariff.defaultThumbnail}
