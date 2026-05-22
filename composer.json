@@ -61,7 +61,6 @@
 	},
 	"extra": {
 		"typo3/cms": {
-			"app-dir": ".Build",
 			"Package": {
 				"providesPackages": {}
 			},

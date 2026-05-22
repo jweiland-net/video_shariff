@@ -34,13 +34,10 @@ nbproject
 *.log
 
 # Ignore composer stuff
+# Ignore composer stuff
 /composer.lock
-var/*
-bin/*
-vendor/*
-.build
-.Build
-composer.lock
+/packages
+/var
 
 # Ignore testing stuff
 /.Build
