@@ -35,7 +35,6 @@
 	},
 	"require-dev": {
 		"ergebnis/composer-normalize": "^2.44",
-		"friendsofphp/php-cs-fixer": "^3.14",
 		"phpstan/phpstan": "^2.0",
 		"phpunit/phpunit": "^11.5",
 		"roave/security-advisories": "dev-latest",
