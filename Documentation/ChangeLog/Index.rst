@@ -7,6 +7,11 @@
 ChangeLog
 =========
 
+Version 5.1.3
+=============
+
+*   [BUGFIX] Prevent syntax error with EXT: in ExpressionLanguage
+
 Version 5.1.2
 =============
 

@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: 'Checkout'
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 'Lint PHP'
         run: Build/Scripts/runTests.sh -p ${{ matrix.php }} -s lint
@@ -32,6 +32,9 @@ jobs:
 
       - name: 'Composer normalize'
         run: Build/Scripts/runTests.sh -p ${{ matrix.php }} -s composerNormalize -n
+
+      - name: 'Rector'
+        run: Build/Scripts/runTests.sh -n -p ${{ matrix.php }} -s rector
 
       - name: 'CGL'
         run: Build/Scripts/runTests.sh -n -p ${{ matrix.php }} -s cgl
@@ -52,7 +55,7 @@ jobs:
 
     steps:
       - name: 'Checkout'
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 'Setup Node.js'
         uses: actions/setup-node@v5

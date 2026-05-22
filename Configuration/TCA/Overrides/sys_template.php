@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the package jweiland/video-shariff.
  *
@@ -11,7 +13,9 @@ if (!defined('TYPO3')) {
     die('Access denied.');
 }
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
+ExtensionManagementUtility::addStaticFile(
     'video_shariff',
     'Configuration/TypoScript/',
     'Video shariff',

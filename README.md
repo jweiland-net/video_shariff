@@ -58,11 +58,11 @@ npm install
 
 Available scripts:
 
-| Script              | What it does                                                                 |
-| ------------------- | ---------------------------------------------------------------------------- |
+| Script              | What it does                                                                  |
+|---------------------|-------------------------------------------------------------------------------|
 | `npm run build:js`  | Bundle + minify `VideoShariff.js` into `VideoShariff.min.js` (ES2020 target). |
-| `npm run watch:js`  | Same as `build:js`, re-running on every source change.                       |
-| `npm run verify:js` | Rebuild and fail if the committed `VideoShariff.min.js` is out of date.      |
+| `npm run watch:js`  | Same as `build:js`, re-running on every source change.                        |
+| `npm run verify:js` | Rebuild and fail if the committed `VideoShariff.min.js` is out of date.       |
 
 Whenever you edit `VideoShariff.js`, rebuild and commit the regenerated
 `VideoShariff.min.js` in the same commit. CI runs `npm run verify:js` on every
