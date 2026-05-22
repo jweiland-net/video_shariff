@@ -11,7 +11,9 @@ if (!defined('TYPO3')) {
     die('Access denied.');
 }
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
+use \TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
+ExtensionManagementUtility::addStaticFile(
     'video_shariff',
     'Configuration/TypoScript/',
     'Video shariff',
