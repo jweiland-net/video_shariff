@@ -38,15 +38,15 @@ final class SecondsToISO8601ViewHelper extends AbstractViewHelper
         $days = floor($seconds / (3600 * 24));
         $hours = floor(($seconds % (3600 * 24)) / 3600);
         $minutes = floor(($seconds % 3600) / 60);
-        $seconds = $seconds % 60;
+        $seconds %= 60;
 
         return sprintf(
             'P%s%s%s%s%s',
-            $days ? $days . 'D' : '',
+            $days !== 0.0 ? $days . 'D' : '',
             $hours || $minutes || $seconds ? 'T' : '',
-            $hours ? $hours . 'H' : '',
-            $minutes ? $minutes . 'M' : '',
-            $seconds ? $seconds . 'S' : '',
+            $hours !== 0.0 ? $hours . 'H' : '',
+            $minutes !== 0.0 ? $minutes . 'M' : '',
+            $seconds !== 0 ? $seconds . 'S' : '',
         );
     }
 }
