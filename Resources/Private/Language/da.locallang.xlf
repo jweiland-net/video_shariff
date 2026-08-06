@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file source-language="en" target-language="da" datatype="plaintext" original="messages" date="2021-05-31T14:24:45Z" product-name="video_shariff">
+    <header/>
     <body>
-      <trans-unit id="preview.text">
+      <trans-unit id="preview.text" xml:space="preserve" approved="yes">
         <source>We take care about your privacy. Only when you click here, data from third party servers will be loaded.</source>
-        <target state="needs-translation">We take care about your privacy. Only when you click here, data from third party servers will be loaded.</target>
-      </trans-unit>
+      <target state="final">Vi tager dit privatliv alvorligt. Det er først når du klikker her, at data fra tredjepartsservere vil blive indlæst.</target></trans-unit>
     </body>
   </file>
 </xliff>
