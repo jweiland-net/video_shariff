@@ -7,6 +7,11 @@
 ChangeLog
 =========
 
+Version 5.1.4
+=============
+
+*   [BUGFIX] Migrate XLIFF files back to version 1.2 format
+
 Version 5.1.3
 =============
 

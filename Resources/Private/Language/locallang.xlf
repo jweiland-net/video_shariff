@@ -1,13 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0"
-       srcLang="en">
-  <file id="f1">
-    <unit id="preview.text">
-      <segment state="final">
-        <source>We take care about your privacy. Only when you click here, data from third party servers will be
-          loaded.
-        </source>
-      </segment>
-    </unit>
-  </file>
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="EXT:video_shariff/Resources/Private/Language/locallang.xlf" date="2026-08-14T00:00:00Z" product-name="video_shariff">
+		<header/>
+		<body>
+			<trans-unit id="preview.text">
+				<source>We take care about your privacy. Only when you click here, data from third party servers will be loaded.</source>
+			</trans-unit>
+		</body>
+	</file>
 </xliff>
